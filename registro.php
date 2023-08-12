@@ -1,10 +1,10 @@
 <?php 
 
-    include("includes/head.html");
+    include("app/componentes/head.html");
 
-    include("modelo/conexion.php");
+    include("app/modelo/conexion.php");
         
-    include("includes/header.php"); 
+    include("app/componentes/header.php"); 
 
     function mostrarSiExiste($name){
 
@@ -18,11 +18,11 @@
 
     session_start();
 
-    if(isset($_SESSION["usuario"])){
+    // if(isset($_SESSION["usuario"])){
 
-        header("location: vista/inicio.php");
+    //     header("location: vista/inicio.php");
 
-    }
+    // }
     
 ?>
 
@@ -147,4 +147,4 @@
 
     ?>
 
-<?php include("includes/footer.html"); ?>
+<?php include("app/componentes/footer.html"); ?>

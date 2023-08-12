@@ -1,16 +1,16 @@
 <?php 
 
-    include("includes/head.html");
+    include("app/componentes/head.html");
 
-    include("includes/header.php");
+    include("app/componentes/header.php");
 
     session_start();
 
-    // if(isset($_SESSION["usuario"])){
+    if(isset($_SESSION["usuario"])){
 
-    //     header("location: vista/inicio.php");
+        header("location: app/vista/inicio.php");
 
-    // }
+    }
     
 ?>
 
@@ -20,7 +20,7 @@
     
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam laudantium illum earum ex est possimus sint voluptatem mollitia modi quo, dolorum velit perferendis quod, quas beatae at accusantium tenetur tempore.</p>
 
-<?php include("includes/footer.html"); ?>
+<?php include("app/componentes/footer.html"); ?>
 
 <!-- NORMAS DE CODIFICACIÓN:
 

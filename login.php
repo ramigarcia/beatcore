@@ -2,11 +2,11 @@
 
     // INCLUDES
 
-    include("includes/head.html");
+    include("app/componentes/head.html");
 
-    include("modelo/conexion.php");
+    include("app/componentes/header.php");
 
-    include("includes/header.php"); 
+    include("app/modelo/conexion.php");
 
     // FUNCIÓNES Y SESSION_START()
 
@@ -22,11 +22,11 @@
 
     session_start();
 
-    if(isset($_SESSION["usuario"])){
+    // if(isset($_SESSION["usuario"])){
 
-        header("location: vista/inicio.php");
+    //     header("location: app/vista/inicio.php");
 
-    }
+    // }
     
 ?>
 
@@ -80,7 +80,7 @@
 
                         $_SESSION["id_usuario"] = $fila["id_usuario"];
 
-                        header("location: vista/inicio.php");
+                        header("location: app/vista/inicio.php");
 
                     }
 
@@ -92,4 +92,4 @@
 
     ?>
 
-<?php include("includes/footer.html"); ?>
+<?php include("app/componentes/footer.html"); ?>
