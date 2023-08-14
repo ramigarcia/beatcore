@@ -1,63 +1,64 @@
 <div class="sidebar">
 
-    <a href="inicio.php">Inicio</a>
+  <a href="inicio.php">Inicio</a>
 
-    <a href="#">Torneos</a>
+  <a href="#">Torneos</a>
 
-    <a href="#">Videollamadas</a>
+  <a href="#">Videollamadas</a>
 
-    <!-- INICIO MODAL - NUEVA PUBLICACIÓN -->
+  <!-- INICIO MODAL - NUEVA PUBLICACIÓN -->
 
-        <!-- BOTON MODAL -->
+  <!-- BOTON MODAL -->
 
-            <div class="div-btn-modal">
+  <div class="div-btn-modal">
 
-                <label for="btn-modal" class="btn-modal">Nueva publicación</label>
+    <label for="btn-modal" class="btn-modal">Nueva publicación</label>
 
-            </div>
+  </div>
 
-        <!-- FIN BOTÓN MODAL -->
+  <!-- FIN BOTÓN MODAL -->
 
-        <!-- VENTANA MODAL -->
+  <!-- VENTANA MODAL -->
 
-        <input type="checkbox" id="btn-modal">
+  <input type="checkbox" id="btn-modal">
 
-        <div class="div-contenedor-modal">
+  <div class="div-contenedor-modal">
 
-        <div class="div-contenido-modal">
+    <div class="div-contenido-modal">
 
-                <h2>Nueva publicación</h2>
+      <h2>Nueva publicación</h2>
 
-                <form id="form_nueva_publicacion" action="../controlador/publicar.php" method="post">
+      <form id="form_nueva_publicacion" action="../controlador/publicar.php" method="post">
 
-                    <label for="texto" class="label">
+        <label for="texto" class="label">
 
-                        <span>Texto</span>
+          <span>Texto</span>
 
-                        <textarea name="texto" id="texto" maxlength="300" placeholder="Escribe aquí lo que quieres expresar" required autofocus></textarea>
+          <textarea name="texto" id="texto" maxlength="300" placeholder="Escribe aquí lo que quieres expresar" required
+            autofocus></textarea>
 
-                    </label>
+        </label>
 
-                    <input type="submit" name="btn_publicar" id="btn_publicar" hidden>
+        <input type="submit" name="btn_publicar" id="btn_publicar" hidden>
 
-                </form>
+      </form>
 
-                <div class="div-btn-modal">
+      <div class="div-btn-modal">
 
-                    <label for="btn-modal" class="btn-cancelar">Cancelar</label>
+        <label for="btn-modal" class="btn-cancelar">Cancelar</label>
 
-                    <label for="btn_publicar" class="btn-modal">Publicar</label>
+        <label for="btn_publicar" class="btn-modal">Publicar</label>
 
-                </div>
+      </div>
 
-            </div>
+    </div>
 
-            <label for="btn-modal" class="cerrar-modal-fondo"></label>
+    <label for="btn-modal" class="cerrar-modal-fondo"></label>
 
-        </div>
+  </div>
 
-        <!-- FIN VENTANA MODAL -->
+  <!-- FIN VENTANA MODAL -->
 
-    <!-- FIN MODAL - NUEVA PUBLICACIÓN -->
+  <!-- FIN MODAL - NUEVA PUBLICACIÓN -->
 
 </div>

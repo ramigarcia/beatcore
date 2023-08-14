@@ -1,91 +1,95 @@
 <?php
 
-    include("../modelo/conexion.php");
+include("../modelo/conexion.php");
 
-    session_start();
+session_start();
 
-    $id_usuario = $_SESSION["id_usuario"];
+$id_usuario = $_SESSION["id_usuario"];
 
-    if(empty($_SESSION["usuario"])){
+if (empty($_SESSION["usuario"])) {
 
-        header("location: ../../");
+  header("location: ../../");
 
-    }
+}
 
-    // FUNCIONES
+// FUNCIONES
 
-    function traerPublicaciones($query){ 
+function traerPublicaciones($query)
+{
 
-        include("../modelo/conexion.php");
+  include("../modelo/conexion.php");
 
-        $res = mysqli_query($con, $query);
+  $res = mysqli_query($con, $query);
 
-        if(mysqli_num_rows($res) > 0){
+  if (mysqli_num_rows($res) > 0) {
 
-            while($fila = mysqli_fetch_array($res)){
+    while ($fila = mysqli_fetch_array($res)) {
 
-                ?>
-                
-                    <div class="publicacion">
+      ?>
 
-                        <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
+      <div class="publicacion">
 
-                        <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+        <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
 
-                        <div class="publicacion-contenido">
+        <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
-                            <p><?php echo $fila["texto"]; ?></p>
+        <div class="publicacion-contenido">
 
-                        </div>
+          <p>
+            <?php echo $fila["texto"]; ?>
+          </p>
 
-                        <a href="#"><img src="../../publico/img/iconos/compartir.png"/></a>
+        </div>
 
-                        <a href="#"><img src="../../publico/img/iconos/responder.png"/></a>
+        <a href="#"><img src="../../publico/img/iconos/compartir.png" /></a>
 
-                        <a href="#"><img src="../../publico/img/iconos/guardar_regular.png"/></a>
+        <a href="#"><img src="../../publico/img/iconos/responder.png" /></a>
 
-                        <a href="#"><img src="../../publico/img/iconos/comentar.png"/></a>
+        <a href="#"><img src="../../publico/img/iconos/guardar_regular.png" /></a>
 
-                        <a href="#"><img src="../../publico/img/iconos/like_regular.png"/></a>
+        <a href="#"><img src="../../publico/img/iconos/comentar.png" /></a>
 
-                    </div>
+        <a href="#"><img src="../../publico/img/iconos/like_regular.png" /></a>
 
-                <?php
+      </div>
 
-            }
-
-        }else{
-
-            echo "No hay publicaciones";
-
-        }
+      <?php
 
     }
+
+  } else {
+
+    echo "No hay publicaciones";
+
+  }
+
+}
 
 ?>
 
 <header>
 
-    <a href="inicio.php">BeatCore</a>
+  <a href="inicio.php">BeatCore</a>
 
-    <input type="search" name="busqueda">
+  <input type="search" name="busqueda">
 
-    <a href="#">Notificaciones</a>
+  <a href="#">Notificaciones</a>
 
-    <a href="#">Chats</a>
+  <a href="#">Chats</a>
 
-    <a href="perfil.php?id_usuario=<?php echo $id_usuario; ?>"><img src="../../publico/img/iconos/perfil.png" width="20px"/></a>
+  <a href="perfil.php?id_usuario=<?php echo $id_usuario; ?>"><img src="../../publico/img/iconos/perfil.png"
+      width="20px" /></a>
 
-    <a href="#">...</a>
+  <a href="#">...</a>
 
-    <ul>
+  <ul>
 
-        <li><a href="#">Soporte</a></li>
+    <li><a href="#">Soporte</a></li>
 
-        <li>Modo oscuro</li>
+    <li>Modo oscuro</li>
 
-        <li><a href="../controlador/cerrar_sesion.php">Cerrar sesión</a></li>
+    <li><a href="../controlador/cerrar_sesion.php">Cerrar sesión</a></li>
 
-    </ul>
+  </ul>
 
 </header>

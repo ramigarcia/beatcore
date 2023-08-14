@@ -1,15 +1,10 @@
 <?php
 
-    $con = mysqli_connect(
-
-        "localhost",
-
-        "root",
-
-        "",
-
-        "beatcore"
-
-    );
+$con = mysqli_connect(
+  "localhost",
+  "root",
+  "",
+  "beatcore"
+);
 
 ?>

@@ -1,95 +1,83 @@
-<?php 
+<?php
 
-    // INCLUDES
+// INCLUDES
 
-    include("app/componentes/head.html");
+include("app/componentes/head.html");
 
-    include("app/componentes/header.php");
+include("app/componentes/header.php");
 
-    include("app/modelo/conexion.php");
+include("app/modelo/conexion.php");
 
-    // FUNCIÓNES Y SESSION_START()
+// FUNCIÓNES Y SESSION_START()
 
-    function mostrarSiExiste($name){
+function mostrarSiExiste($name)
+{
 
-        if(isset($_POST["$name"])){
+  if (isset($_POST["$name"])) {
 
-            echo $_POST["$name"];
+    echo $_POST["$name"];
 
-        }
+  }
 
-    }
+}
 
-    session_start();
+session_start();
 
-    // if(isset($_SESSION["usuario"])){
+// if(isset($_SESSION["usuario"])){
 
-    //     header("location: app/vista/inicio.php");
+//     header("location: app/vista/inicio.php");
 
-    // }
-    
+// }
+
 ?>
 
-    <h1>Iniciar sesión</h1>
+<h1>Iniciar sesión</h1>
 
-    <form action="login.php" method="POST">
+<form action="login.php" method="POST">
+  <label for="usuario">
+    <span>Nombre de usuario</span>
+    <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario" pattern="[A-Za-z]{3,20}"
+      required autofocus>
+  </label>
+  <label for="clave">
+    <span>Contraseña</span>
+    <input type="password" name="clave" id="clave" required>
+  </label>
+  <button name="btn_login">Iniciar sesión</button>
+</form>
 
-        <label for="usuario">
+<?php
+if (isset($_POST["btn_login"])) {
+  $usuario = $_POST["usuario"];
 
-            <span>Nombre de usuario</span>
+  $clave = md5($_POST["clave"]);
 
-            <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario" pattern="[A-Za-z]{3,20}" required autofocus>
+  $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario'";
 
-        </label>
+  $res = mysqli_query($con, $query);
 
-        <label for="clave">
+  if (mysqli_num_rows($res) == 0) {
+    echo "Usuario incorrecto";
+  } else {
 
-            <span>Contraseña</span>
+    $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario' AND clave = '$clave'";
 
-            <input type="password" name="clave" id="clave" required>
+    $res = mysqli_query($con, $query);
 
-        </label>
+    if (mysqli_num_rows($res) == 0) {
+      echo "Contraseña incorrecta";
+    } else {
 
-        <button name="btn_login">Iniciar sesión</button>
+      while ($fila = mysqli_fetch_array($res)) {
 
-    </form>
+        $_SESSION["usuario"] = $fila["usuario"];
 
-    <?php
-    
-        if(isset($_POST["btn_login"])){
+        $_SESSION["id_usuario"] = $fila["id_usuario"];
 
-            $usuario = $_POST["usuario"];
+        header("location: app/vista/inicio.php");
 
-            $clave = md5($_POST["clave"]);
-
-            $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario'";
-
-            $res = mysqli_query($con, $query);
-
-             if(mysqli_num_rows($res) == 0){ echo "Usuario incorrecto"; }else{
-
-                $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario' AND clave = '$clave'";
-
-                $res = mysqli_query($con, $query);
-
-                if(mysqli_num_rows($res) == 0){ echo "Contraseña incorrecta"; }else{
-
-                    while($fila = mysqli_fetch_array($res)){
-
-                        $_SESSION["usuario"] = $fila["usuario"];
-
-                        $_SESSION["id_usuario"] = $fila["id_usuario"];
-
-                        header("location: app/vista/inicio.php");
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    ?>
-
-<?php include("app/componentes/footer.html"); ?>
+      }
+    }
+  }
+}
+include("app/componentes/footer.html");

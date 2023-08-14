@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-08-2023 a las 00:21:19
+-- Tiempo de generación: 14-08-2023 a las 17:10:20
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,6 +79,13 @@ CREATE TABLE `t_roles` (
   `rol` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `t_roles`
+--
+
+INSERT INTO `t_roles` (`id_rol`, `rol`) VALUES
+(1, 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -102,7 +109,7 @@ CREATE TABLE `t_usuarios` (
   `usuario` varchar(100) NOT NULL,
   `gmail` varchar(255) NOT NULL,
   `telefono` varchar(50) NOT NULL,
-  `contrasena` varchar(100) NOT NULL,
+  `clave` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
@@ -112,6 +119,13 @@ CREATE TABLE `t_usuarios` (
   `id_rol` tinyint(4) NOT NULL,
   `fecha_creacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `t_usuarios`
+--
+
+INSERT INTO `t_usuarios` (`id_usuario`, `usuario`, `gmail`, `telefono`, `clave`, `nombre`, `apellido`, `fecha_nacimiento`, `descripcion`, `foto_perfil`, `foto_portada`, `id_rol`, `fecha_creacion`) VALUES
+(7, 'ramiro', 'rg@gmail.com', '', '7815696ecbf1c96e6894b779456d330e', '', '', '2023-08-13', '', '', '', 1, '2023-08-14');
 
 --
 -- Índices para tablas volcadas
@@ -187,7 +201,7 @@ ALTER TABLE `t_publicaciones`
 -- AUTO_INCREMENT de la tabla `t_roles`
 --
 ALTER TABLE `t_roles`
-  MODIFY `id_rol` tinyint(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `t_seguidores`
@@ -199,7 +213,7 @@ ALTER TABLE `t_seguidores`
 -- AUTO_INCREMENT de la tabla `t_usuarios`
 --
 ALTER TABLE `t_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
