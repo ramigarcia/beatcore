@@ -1,49 +1,51 @@
 <?php
 
-    include("../modelo/conexion.php");
+include("../modelo/conexion.php");
 
-    $id_usuario = $_SESSION["id_usuario"];
+$id_usuario = $_SESSION["id_usuario"];
 
-    $res = mysqli_query($con, $query);
+$res = mysqli_query($con, $query);
 
-    if(mysqli_num_rows($res) > 0){
+if (mysqli_num_rows($res) > 0) {
 
-        while($fila = mysqli_fetch_array($res)){
+  while ($fila = mysqli_fetch_array($res)) {
 
-            ?>
-            
-                <div class="publicacion">
+    ?>
 
-                    <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
+    <div class="publicacion">
 
-                    <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+      <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
 
-                    <div class="publicacion-contenido">
+      <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
-                        <p><?php echo $fila["texto"]; ?></p>
+      <div class="publicacion-contenido">
 
-                    </div>
+        <p>
+          <?php echo $fila["texto"]; ?>
+        </p>
 
-                    <a href="#"><img src="../publico/img/iconos/compartir.png"/></a>
+      </div>
 
-                    <a href="#"><img src="../publico/img/iconos/responder.png"/></a>
+      <a href="#"><img src="../publico/img/iconos/compartir.png" /></a>
 
-                    <a href="#"><img src="../publico/img/iconos/guardar_regular.png"/></a>
+      <a href="#"><img src="../publico/img/iconos/responder.png" /></a>
 
-                    <a href="#"><img src="../publico/img/iconos/comentar.png"/></a>
+      <a href="#"><img src="../publico/img/iconos/guardar_regular.png" /></a>
 
-                    <a href="#"><img src="../publico/img/iconos/like_regular.png"/></a>
+      <a href="#"><img src="../publico/img/iconos/comentar.png" /></a>
 
-                </div>
+      <a href="#"><img src="../publico/img/iconos/like_regular.png" /></a>
 
-            <?php
+    </div>
 
-        }
+    <?php
 
-    }else{
+  }
 
-        echo "No hay publicaciones";
+} else {
 
-    }
+  echo "No hay publicaciones";
+
+}
 
 ?>

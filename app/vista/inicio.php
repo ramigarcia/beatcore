@@ -5,7 +5,7 @@
 
 <body>
   <?php
-  include("../componentes/header_vista_usuario.php");
+  include("../componentes/header.php");
 
   if (empty($_SESSION["usuario"])) {
     header("location: ../../");
@@ -13,7 +13,7 @@
 
   include("../componentes/sidebar.php");
 
-  $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario";
+  $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario ORDER BY id_publicacion DESC";
 
   traerPublicaciones($query);
   ?>
