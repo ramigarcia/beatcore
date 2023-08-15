@@ -1,53 +1,58 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-    include("../componentes/head.html");
+<?php include("../componentes/head.php"); ?>
 
-    include("../componentes/header_vista_usuario.php");
+<body>
+  <?php
+  include("../componentes/header_vista_usuario.php");
+  include("../componentes/sidebar.php");
 
-    include("../componentes/sidebar.php");
+  if (isset($_GET["id_usuario"])) {
 
-    if(isset($_GET["id_usuario"])){
+    $id_usuarioP = $_GET["id_usuario"];
 
-        $id_usuario = $_GET["id_usuario"];
+    $tu_usuario = $_SESSION["id_usuario"];
 
-        $tu_usuario = $_SESSION["id_usuario"];
+    $query = "SELECT * FROM t_usuarios WHERE id_usuario = $id_usuarioP ";
 
-        $query = "SELECT * FROM t_usuarios WHERE  $id_usuario = id_usuario";
+    $res = mysqli_query($con, $query);
 
-        $res = mysqli_query($con, $query);
+    if (mysqli_num_rows($res) == 1) {
 
-        if(mysqli_num_rows($res) === 1){
+      $fila = mysqli_fetch_array($res);
 
-            $fila = mysqli_fetch_array($res);
+      ?>
 
-            ?>
-            
-                <img src="<?php echo $fila['foto_portada']; ?>" />
+      <img src="<?php echo $fila['foto_portada']; ?>" />
 
-                <img src="<?php echo $fila["foto_perfil"]; ?>" />
+      <img src="<?php echo $fila["foto_perfil"]; ?>" />
 
-                <h1><?php echo $fila["usuario"]; ?></h1>
-            
-            <?php
+      <h1>
+        <?php echo $fila["usuario"]; ?>
+      </h1>
 
-            if($id_usuario === $tu_usuario){
+      <?php
 
-                // ES TU PERFIL
+      if ($id_usuario === $tu_usuario) {
 
-            }else{
+        // ES TU PERFIL
+  
+      } else {
 
-                // NO ES TU PERFIL
-
-            }
-
-        }
-
-        $query2 = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_usuario = '$id_usuario'";
-
-        traerPublicaciones($query2);
+        // NO ES TU PERFIL
+  
+      }
 
     }
 
-?>   
+    $query2 = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_usuario = '$id_usuario'";
 
-<?php include("../componentes/footer.html"); ?>
+    traerPublicaciones($query2);
+
+  }
+
+  ?>
+</body>
+
+</html>

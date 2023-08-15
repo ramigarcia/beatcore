@@ -1,6 +1,6 @@
 <?php
 
-include("../modelo/conexion.php");
+require("../modelo/conexion.php");
 
 session_start();
 
@@ -17,7 +17,7 @@ if (empty($_SESSION["usuario"])) {
 function traerPublicaciones($query)
 {
 
-  include("../modelo/conexion.php");
+  require("../modelo/conexion.php");
 
   $res = mysqli_query($con, $query);
 

@@ -1,21 +1,22 @@
-<?php 
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD -->
+<?php include("../componentes/head.php"); ?>
 
-    include("../componentes/head.html");
+<body>
+  <?php
+  include("../componentes/header_vista_usuario.php");
 
-    include("../componentes/header_vista_usuario.php");
+  if (empty($_SESSION["usuario"])) {
+    header("location: ../../");
+  }
 
-    if(empty($_SESSION["usuario"])){
+  include("../componentes/sidebar.php");
 
-        header("location: ../../");
+  $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario";
 
-    }
+  traerPublicaciones($query);
+  ?>
+</body>
 
-    include("../componentes/sidebar.php");
-
-    $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario";
-
-    traerPublicaciones($query);
-
-?>
-
-<?php include("../componentes/footer.html"); ?>
+</html>
