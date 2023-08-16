@@ -101,4 +101,16 @@
 
     }
 
+    function datosUsuario($id_usuario, $datos){
+
+        include("../modelo/conexion.php");
+
+        $query = "SELECT $datos FROM t_usuarios WHERE id_usuario = '$id_usuario'";
+
+        $res = mysqli_query($con, $query);
+
+        return mysqli_fetch_array($res);
+
+    }
+
 ?>

@@ -2,7 +2,6 @@
 <html lang="en">
 <?php 
 include("../componentes/head.php");
-include("../ayudas/funciones.php"); 
 ?>
 
 <body>

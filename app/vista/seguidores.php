@@ -13,13 +13,9 @@ include("../componentes/head.php");
 
     $id_usuario = $_GET["id_usuario"];
 
-    $query = "SELECT usuario FROM t_usuarios WHERE id_usuario = '$id_usuario'";
+    $usuario = datosUsuario($id_usuario, "usuario");
 
-    $res = mysqli_query($con, $query);
-
-    $usuario = mysqli_fetch_array($res);
-
-    echo "<h2>Seguidores de <a href='perfil.php?id_usuario=" . $id_usuario . "'>" . $usuario["usuario"] . "</a></h2>";
+    ?><h2>Seguidores de <a href='perfil.php?id_usuario=<?php echo $id_usuario; ?>'><?php echo $usuario["usuario"]; ?></a></h2><?php
 
     // INICIO - MENSAJE
 

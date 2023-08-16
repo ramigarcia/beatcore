@@ -1,10 +1,11 @@
 <?php
-
 require("../modelo/conexion.php");
-
+require("../ayudas/funciones.php");
 session_start();
 
 $id_usuario = $_SESSION["id_usuario"];
+
+// VALIDACIÓN - SI EXISTE EL USUARIO
 
 if (empty($_SESSION["usuario"])) {
 
@@ -24,19 +25,26 @@ if (empty($_SESSION["usuario"])) {
 
   <a href="#">Chats</a>
 
-  <a href="perfil.php?id_usuario=<?php echo $id_usuario; ?>"><img src="../../publico/img/iconos/perfil.png"
-      width="20px" /></a>
+  <!-- LINK AL PERFIL DEL USUARIO -->
 
-  <a href="#">...</a>
+    <a href="perfil.php?id_usuario=<?php echo $id_usuario; ?>"><img src="<?php echo datosUsuario($id_usuario, "foto_perfil")["foto_perfil"]; ?>" width="20px"></a>
 
-  <ul>
+  <!-- FIN - LINK AL PERFIL -->
 
-    <li><a href="#">Soporte</a></li>
+  <!-- TRES PUNTOS (COMO LA HAMBURGUESITA) -->
 
-    <li>Modo oscuro</li>
+    <a href="#"><img src="../../publico/img/iconos/tres_puntos.png" width="20px"></a>
 
-    <li><a href="../controlador/cerrar_sesion.php">Cerrar sesión</a></li>
+    <ul>
 
-  </ul>
+      <li><a href="#">Soporte</a></li>
+
+      <li>Modo oscuro</li>
+
+      <li><a href="../controlador/cerrar_sesion.php">Cerrar sesión</a></li>
+
+    </ul>
+
+  <!-- FIN - TRES PUNTOS -->
 
 </header>
