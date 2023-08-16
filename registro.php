@@ -65,11 +65,11 @@
 </html>
 
 <?php
-// if(isset($_SESSION["usuario"])){
+if(isset($_SESSION["usuario"])){
 
-//     header("location: vista/inicio.php");
+    header("location: vista/inicio.php");
 
-// }
+}
 
 if (isset($_POST["btn_registrar_usuario"])) {
 
@@ -108,8 +108,8 @@ if (isset($_POST["btn_registrar_usuario"])) {
         $res = mysqli_query($con, $query);
 
         if ($res) {
-          echo "Felicidades, se registró exitosamente";
-          header("Refresh: 2; url= login.php");
+          $_SESSION["msj"] = "Felicidades, se registró exitosamente";
+          header("Location: login.php");
         } else {
           echo "Algo salió mal";
         }

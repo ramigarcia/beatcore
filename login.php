@@ -24,6 +24,22 @@ session_start();
   </header>
   <h1>Iniciar sesión</h1>
 
+  <!-- MENSAJE DE "FELICIDADES, TE REGISTRASTE" -->
+
+    <?php
+    
+      if(isset($_SESSION["msj"])){
+
+        echo $_SESSION["msj"];
+
+        unset($_SESSION["msj"]);
+
+      }
+    
+    ?>
+
+  <!-- FIN DEL MENSAJE -->
+  
   <!-- FORMULARIO -->
   <form action="login.php" method="POST">
     <label for="usuario">
@@ -41,11 +57,11 @@ session_start();
 
 </html>
 <?php
-// if(isset($_SESSION["usuario"])){
+if(isset($_SESSION["usuario"])){
 
-// header("location: app/vista/inicio.php");
+header("location: app/vista/inicio.php");
 
-// }
+}
 if (isset($_POST["btn_login"])) {
   $usuario = $_POST["usuario"];
 
