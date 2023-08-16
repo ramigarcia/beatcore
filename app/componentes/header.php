@@ -12,60 +12,6 @@ if (empty($_SESSION["usuario"])) {
 
 }
 
-// FUNCIONES
-
-function traerPublicaciones($query)
-{
-
-  require("../modelo/conexion.php");
-
-  $res = mysqli_query($con, $query);
-
-  if (mysqli_num_rows($res) > 0) {
-
-    while ($fila = mysqli_fetch_array($res)) {
-
-      ?>
-
-      <div class="publicacion">
-
-        <!-- <img src="<?php //echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" /> -->
-        <img src="../../publico/img/foto_perfil/por_defecto.png" width="20px" alt="foto de perfil" />
-
-        <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
-
-        <div class="publicacion-contenido">
-
-          <p>
-            <?php echo $fila["texto"]; ?>
-          </p>
-
-        </div>
-
-        <a href="#"><img src="../../publico/img/iconos/compartir.png" /></a>
-
-        <a href="#"><img src="../../publico/img/iconos/responder.png" /></a>
-
-        <a href="#"><img src="../../publico/img/iconos/guardar_regular.png" /></a>
-
-        <a href="#"><img src="../../publico/img/iconos/comentar.png" /></a>
-
-        <a href="#"><img src="../../publico/img/iconos/like_regular.png" /></a>
-
-      </div>
-
-      <?php
-
-    }
-
-  } else {
-
-    echo "No hay publicaciones";
-
-  }
-
-}
-
 ?>
 
 <header>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../componentes/head.php"); ?>
+<?php 
+include("../componentes/head.php");
+?>
 
 <body>
   <?php
@@ -36,9 +38,21 @@
 
         $seguido = mysqli_fetch_array($r_seguido);
 
-        echo "<img src=" . $seguido["foto_perfil"] . " width='20px' alt='foto de perfil'>";
+        ?>
         
-        echo "<a href='perfil.php?id_usuario=" . $seguido["id_usuario"] . "'>" . $seguido["usuario"] . "<br>";
+          <ul>
+
+            <li>
+
+              <img src="<?php echo $seguido["foto_perfil"] ?>" width="20px">
+
+              <a href="perfil.php?id_usuario=<?php echo $seguido["id_usuario"]; ?>"><?php echo $seguido["usuario"]; ?></a>
+
+            </li>
+
+          </ul>
+        
+        <?php
 
       }
 
