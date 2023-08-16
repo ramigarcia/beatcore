@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 include("../componentes/head.php");
 ?>
 
@@ -60,11 +60,11 @@ include("../componentes/head.php");
           <?php
 
         }
-  
+
       }
 
       // INICIO - SEGUIDORES / SEGUIDOS
-
+  
       $q_seguidores = "SELECT * FROM t_seguidores WHERE id_seguido = '$id_usuarioP'";
 
       $r_seguidores = mysqli_query($con, $q_seguidores);
@@ -80,7 +80,7 @@ include("../componentes/head.php");
       echo "<br>";
 
       // FIN - SEGUIDORES / SEGUIDOS
-
+  
       $q_publicaciones = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE t_usuarios.id_usuario = '$id_usuarioP' ORDER BY id_publicacion DESC";
 
       traerPublicaciones($q_publicaciones);
@@ -89,7 +89,7 @@ include("../componentes/head.php");
 
   }
 
-?>
+  ?>
 
 </body>
 

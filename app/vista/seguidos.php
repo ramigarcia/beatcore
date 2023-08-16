@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
+<?php
 include("../componentes/head.php");
 ?>
 
@@ -39,24 +39,24 @@ include("../componentes/head.php");
         $seguido = mysqli_fetch_array($r_seguido);
 
         ?>
-        
-          <ul>
 
-            <li>
+        <ul>
 
-              <img src="<?php echo $seguido["foto_perfil"] ?>" width="20px">
+          <li>
 
-              <a href="perfil.php?id_usuario=<?php echo $seguido["id_usuario"]; ?>"><?php echo $seguido["usuario"]; ?></a>
+            <img src="<?php echo $seguido["foto_perfil"] ?>" width="20px">
 
-            </li>
+            <a href="perfil.php?id_usuario=<?php echo $seguido["id_usuario"]; ?>"><?php echo $seguido["usuario"]; ?></a>
 
-          </ul>
-        
+          </li>
+
+        </ul>
+
         <?php
 
       }
 
-    }else{
+    } else {
 
       echo $usuario["usuario"] . " no sigue a nadie :(";
 

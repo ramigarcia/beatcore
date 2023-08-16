@@ -64,30 +64,30 @@
   <p>Perfiles recomendados</p>
 
   <?php
-  
-    $query = "SELECT id_usuario, usuario, foto_perfil FROM t_usuarios ORDER BY id_usuario DESC LIMIT 3";
 
-    $res = mysqli_query($con, $query);
+  $query = "SELECT id_usuario, usuario, foto_perfil FROM t_usuarios ORDER BY id_usuario DESC LIMIT 3";
 
-    while($fila = mysqli_fetch_array($res)){
+  $res = mysqli_query($con, $query);
 
-      ?>
-      
-        <ul>
+  while ($fila = mysqli_fetch_array($res)) {
 
-          <li>
+    ?>
 
-            <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
+    <ul>
 
-            <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+      <li>
 
-          </li>
+        <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
 
-        </ul>
+        <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
-      <?php
+      </li>
 
-    }
+    </ul>
+
+    <?php
+
+  }
 
   ?>
 

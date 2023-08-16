@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php include("app/componentes/head.php"); ?>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeatCore</title>
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- META PROPS -->
+</head>
 
 <body>
   <header>
-    <a href="index.php">BeatCore</a>
+    <nav class="navigation">
+      <div class="logo">
+        <a href="index.php">BeatCore</a>
+      </div>
+      <ul class="navigation-list">
+        <li class="navigation-list-item">
+          <a href="login.php">Iniciar Sesión</a>
+        </li>
+        <li class="navigation-list-item">
+          <a href="registro.php">Registrarse</a>
+        </li>
+      </ul>
+    </nav>
 
-    <a href="login.php">Iniciar Sesión</a>
+    <div class="hero">
+      <h1>BeatCore - Landing page</h1>
+    </div>
 
-    <a href="registro.php">Registrarse</a>
   </header>
   <?php
   session_start();
@@ -17,7 +38,6 @@
     header("location: app/vista/inicio.php");
   }
   ?>
-  <h1>BeatCore - Landing page</h1>
 
   <p>La primer red social para Beatboxers</p>
 

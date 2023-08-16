@@ -11,55 +11,72 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<?php include("app/componentes/head.php"); ?>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeatCore</title>
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- META PROPS -->
+</head>
 
 <body>
   <header>
-    <a href="index.php">BeatCore</a>
-
-    <a href="login.php">Iniciar Sesión</a>
-
-    <a href="registro.php">Registrarse</a>
+    <nav class="navigation">
+      <div class="logo">
+        <a href="index.php">BeatCore</a>
+      </div>
+      <ul class="navigation-list">
+        <li class="navigation-list-item">
+          <a href="login.php">Iniciar Sesión</a>
+        </li>
+        <li class="navigation-list-item">
+          <a href="registro.php">Registrarse</a>
+        </li>
+      </ul>
+    </nav>
   </header>
-  <h1>Iniciar sesión</h1>
-
   <!-- MENSAJE DE "FELICIDADES, TE REGISTRASTE" -->
 
-    <?php
-    
-      if(isset($_SESSION["msj"])){
+  <?php
 
-        echo $_SESSION["msj"];
+  if (isset($_SESSION["msj"])) {
 
-        unset($_SESSION["msj"]);
+    echo $_SESSION["msj"];
 
-      }
-    
-    ?>
+    unset($_SESSION["msj"]);
+
+  }
+
+  ?>
 
   <!-- FIN DEL MENSAJE -->
-  
+
   <!-- FORMULARIO -->
-  <form action="login.php" method="POST">
-    <label for="usuario">
-      <span>Nombre de usuario</span>
-      <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-        pattern="[A-Za-z]{3,20}" required autofocus>
-    </label>
-    <label for="clave">
-      <span>Contraseña</span>
-      <input type="password" name="clave" id="clave" required>
-    </label>
-    <button name="btn_login">Iniciar sesión</button>
-  </form>
+  <div class="container">
+    <form action="login.php" method="POST">
+      <legend>Iniciar Sesion</legend>
+      <label for="usuario">
+        <span>Nombre de usuario</span>
+        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
+          pattern="[A-Za-z]{3,20}" required autofocus>
+      </label>
+      <label for="clave">
+        <span>Contraseña</span>
+        <input type="password" name="clave" id="clave" required>
+      </label>
+      <button name="btn_login">Iniciar sesión</button>
+    </form>
+  </div>
 </body>
 
 </html>
 <?php
-if(isset($_SESSION["usuario"])){
+if (isset($_SESSION["usuario"])) {
 
-header("location: app/vista/inicio.php");
+  header("location: app/vista/inicio.php");
 
 }
 if (isset($_POST["btn_login"])) {

@@ -1,116 +1,126 @@
 <?php
 
-    function traerPublicaciones($query){
+function traerPublicaciones($query)
+{
 
-        include("../modelo/conexion.php");
+  include("../modelo/conexion.php");
 
-        $res = mysqli_query($con, $query);
+  $res = mysqli_query($con, $query);
 
-        if (mysqli_num_rows($res) > 0) {
+  if (mysqli_num_rows($res) > 0) {
 
-        while ($fila = mysqli_fetch_array($res)) {
+    while ($fila = mysqli_fetch_array($res)) {
 
-            ?>
+      ?>
 
-            <ul>
+      <ul>
 
-                <li>
+        <li>
 
-                <div class="publicacion">
+          <div class="publicacion">
 
-                    <!-- <img src="<?php //echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" /> -->
-                    <img src="../../publico/img/foto_perfil/por_defecto.png" width="20px" alt="foto de perfil" />
+            <!-- <img src="<?php //echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" /> -->
+            <img src="../../publico/img/foto_perfil/por_defecto.png" width="20px" alt="foto de perfil" />
 
-                    <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+            <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
-                    <div class="publicacion-contenido">
+            <div class="publicacion-contenido">
 
-                    <p>
-                        <?php echo $fila["texto"]; ?>
-                    </p>
+              <p>
+                <?php echo $fila["texto"]; ?>
+              </p>
 
-                    </div>
+            </div>
 
-                    <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img src="../../publico/img/iconos/compartir.png" /></a>
+            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+                src="../../publico/img/iconos/compartir.png" /></a>
 
-                    <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img src="../../publico/img/iconos/guardar_regular.png" /></a>
+            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+                src="../../publico/img/iconos/guardar_regular.png" /></a>
 
-                    <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img src="../../publico/img/iconos/responder.png" /></a>
+            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+                src="../../publico/img/iconos/responder.png" /></a>
 
-                    <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
+            <!-- <?php // echo cantidadRespuestas($fila["id_publicacion"]); ?> -->
 
-                    <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img src="../../publico/img/iconos/comentar.png" /></a>
+            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+                src="../../publico/img/iconos/comentar.png" /></a>
 
-                    <?php echo cantidadComentarios($fila["id_publicacion"]); ?>
+            <?php echo cantidadComentarios($fila["id_publicacion"]); ?>
 
-                    <a href="../controlador/like.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img src="../../publico/img/iconos/like_regular.png" /></a>
+            <a href="../controlador/like.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+                src="../../publico/img/iconos/like_regular.png" /></a>
 
-                    <?php echo cantidadLikes($fila["id_publicacion"]); ?>
+            <?php echo cantidadLikes($fila["id_publicacion"]); ?>
 
-                </div>
-                
-                </li>
-            
-            </ul>
-            
-            <?php
+          </div>
 
-        }
+        </li>
 
-        } else {
+      </ul>
 
-        echo "No hay publicaciones";
-
-        }
+      <?php
 
     }
 
-    function cantidadLikes($id_publicacion){
+  } else {
 
-        include("../modelo/conexion.php");
+    echo "No hay publicaciones";
 
-        $query = "SELECT * FROM t_likes WHERE id_publicacion = '$id_publicacion'";
+  }
 
-        $res = mysqli_query($con, $query);
+}
 
-        return mysqli_num_rows($res);
+function cantidadLikes($id_publicacion)
+{
 
-    }
+  include("../modelo/conexion.php");
 
-    function cantidadComentarios($id_publicacion){
+  $query = "SELECT * FROM t_likes WHERE id_publicacion = '$id_publicacion'";
 
-        include("../modelo/conexion.php");
+  $res = mysqli_query($con, $query);
 
-        $query = "SELECT * FROM t_comentarios WHERE id_publicacion = '$id_publicacion'";
+  return mysqli_num_rows($res);
 
-        $res = mysqli_query($con, $query);
+}
 
-        return mysqli_num_rows($res);
+function cantidadComentarios($id_publicacion)
+{
 
-    }
+  include("../modelo/conexion.php");
 
-    function cantidadRespuestas($id_publicacion){
+  $query = "SELECT * FROM t_comentarios WHERE id_publicacion = '$id_publicacion'";
 
-        include("../modelo/conexion.php");
+  $res = mysqli_query($con, $query);
 
-        $query = "SELECT * FROM t_publicaciones WHERE id_respuesta = '$id_publicacion'";
+  return mysqli_num_rows($res);
 
-        $res = mysqli_query($con, $query);
+}
 
-        return mysqli_num_rows($res);
+// function cantidadRespuestas($id_publicacion)
+// {
 
-    }
+//   include("../modelo/conexion.php");
 
-    function datosUsuario($id_usuario, $datos){
+//   $query = "SELECT * FROM t_publicaciones WHERE id_respuesta = '$id_publicacion'";
 
-        include("../modelo/conexion.php");
+//   $res = mysqli_query($con, $query);
 
-        $query = "SELECT $datos FROM t_usuarios WHERE id_usuario = '$id_usuario'";
+// return mysqli_num_rows($res);
 
-        $res = mysqli_query($con, $query);
+// }
 
-        return mysqli_fetch_array($res);
+function datosUsuario($id_usuario, $datos)
+{
 
-    }
+  include("../modelo/conexion.php");
+
+  $query = "SELECT $datos FROM t_usuarios WHERE id_usuario = '$id_usuario'";
+
+  $res = mysqli_query($con, $query);
+
+  return mysqli_fetch_array($res);
+
+}
 
 ?>

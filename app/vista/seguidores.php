@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
+<?php
 include("../componentes/head.php");
 ?>
+
 <body>
   <?php
   include("../componentes/header.php");
@@ -15,20 +16,23 @@ include("../componentes/head.php");
 
     $usuario = datosUsuario($id_usuario, "usuario");
 
-    ?><h2>Seguidores de <a href='perfil.php?id_usuario=<?php echo $id_usuario; ?>'><?php echo $usuario["usuario"]; ?></a></h2><?php
+    ?>
+    <h2>Seguidores de <a href='perfil.php?id_usuario=<?php echo $id_usuario; ?>'><?php echo $usuario["usuario"]; ?></a>
+    </h2>
+    <?php
 
     // INICIO - MENSAJE
+  
+    if (isset($_SESSION["msj"])) {
 
-      if(isset($_SESSION["msj"])){
+      echo $_SESSION["msj"];
 
-        echo $_SESSION["msj"];
+      unset($_SESSION["msj"]);
 
-        unset($_SESSION["msj"]);
-
-      }
+    }
 
     // FINAL - MENSAJE
-
+  
     $query = "SELECT * FROM t_seguidores WHERE id_seguido = '$id_usuario'";
 
     $res = mysqli_query($con, $query);
@@ -46,33 +50,35 @@ include("../componentes/head.php");
         $seguidor = mysqli_fetch_array($r_seguidor);
 
         ?>
-        
-          <ul>
 
-            <li>
+        <ul>
 
-              <img src="<?php echo $seguidor["foto_perfil"] ?>" width="20px">
+          <li>
 
-              <a href="perfil.php?id_usuario=<?php echo $seguidor["id_usuario"]; ?>"><?php echo $seguidor["usuario"]; ?></a>
+            <img src="<?php echo $seguidor["foto_perfil"] ?>" width="20px">
 
+            <a href="perfil.php?id_usuario=<?php echo $seguidor["id_usuario"]; ?>"><?php echo $seguidor["usuario"]; ?></a>
+
+            <?php
+
+            if ($id_usuario == $_SESSION["id_usuario"]) {
+
+              ?><a
+                href="../controlador/eliminar_seguidor.php?id_seguidor=<?php echo $seguidor["id_usuario"]; ?>">Eliminar</a>
               <?php
-              
-                if($id_usuario == $_SESSION["id_usuario"]){
 
-                  ?><a href="../controlador/eliminar_seguidor.php?id_seguidor=<?php echo $seguidor["id_usuario"]; ?>">Eliminar</a><?php
+            }
 
-                }
+            ?>
 
-              ?>
+          </li>
 
-            </li>
+        </ul>
 
-          </ul>
-        
         <?php
       }
 
-    }else{
+    } else {
 
       echo "Nadie sigue a " . $usuario["usuario"] . " :(";
 

@@ -1,16 +1,32 @@
 <?php require("app/modelo/conexion.php"); ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<?php include("app/componentes/head.php"); ?>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeatCore</title>
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- META PROPS -->
+</head>
 
 <body>
   <header>
-    <a href="index.php">BeatCore</a>
-
-    <a href="login.php">Iniciar Sesión</a>
-
-    <a href="registro.php">Registrarse</a>
+    <nav class="navigation">
+      <div class="logo">
+        <a href="index.php">BeatCore</a>
+      </div>
+      <ul class="navigation-list">
+        <li class="navigation-list-item">
+          <a href="login.php">Iniciar Sesión</a>
+        </li>
+        <li class="navigation-list-item">
+          <a href="registro.php">Registrarse</a>
+        </li>
+      </ul>
+    </nav>
   </header>
   <?php
   function mostrarSiExiste($name)
@@ -21,53 +37,55 @@
   }
   session_start();
   ?>
-  <h1>Registrar usuario</h1>
   <!-- FORMULARIO -->
-  <form action="registro.php" method="POST">
-    <label for="usuario">
-      <span>Usuario</span>
-      <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-        pattern="[A-Za-z]{3,20}" required autofocus>
-    </label>
+  <div class="container">
+    <form action="registro.php" method="POST">
+      <legend>Registrar usuario</legend>
+      <label for="usuario">
+        <span>Usuario</span>
+        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
+          pattern="[A-Za-z]{3,20}" required autofocus>
+      </label>
 
-    <label for="gmail">
-      <span>Gmail</span>
-      <input type="email" value="<?php mostrarSiExiste("gmail"); ?>" name="gmail" id="gmail" required>
-    </label>
+      <label for="gmail">
+        <span>Gmail</span>
+        <input type="email" value="<?php mostrarSiExiste("gmail"); ?>" name="gmail" id="gmail" required>
+      </label>
 
-    <label for="fecha_nacimiento">
-      <span>Fecha de nacimiento</span>
-      <input type="date" value="<?php mostrarSiExiste("fecha_nacimiento"); ?>" name="fecha_nacimiento"
-        id="fecha_nacimiento" required>
-    </label>
+      <label for="fecha_nacimiento">
+        <span>Fecha de nacimiento</span>
+        <input type="date" value="<?php mostrarSiExiste("fecha_nacimiento"); ?>" name="fecha_nacimiento"
+          id="fecha_nacimiento" required>
+      </label>
 
-    <label for="clave">
-      <span>Contraseña</span>
-      <input type="password" name="clave" id="clave" required>
-    </label>
+      <label for="clave">
+        <span>Contraseña</span>
+        <input type="password" name="clave" id="clave" required>
+      </label>
 
-    <label for="rep_clave">
-      <span>Repetir contraseña</span>
-      <input type="password" name="rep_clave" id="rep_clave" required>
-    </label>
+      <label for="rep_clave">
+        <span>Repetir contraseña</span>
+        <input type="password" name="rep_clave" id="rep_clave" required>
+      </label>
 
-    <label for="terminos_condiciones">
-      <input type="checkbox" name="terminos_condiciones" id="terminos_condiciones" required>
-      <span>Acepto los términos y <a href="#">condiciones</a></span>
-    </label>
+      <label for="terminos_condiciones" class="terminos">
+        <input type="checkbox" name="terminos_condiciones" id="terminos_condiciones" required>
+        <span>Acepto los términos y <a href="#">condiciones</a></span>
+      </label>
 
-    <p>¿Ya tienes cuenta? <a href="iniciar_sesion.php">¡Inicia sesión!</a></p>
-    <button type="submit" name="btn_registrar_usuario">Registrarse</button>
-  </form>
+      <p>¿Ya tienes cuenta? <a href="iniciar_sesion.php">¡Inicia sesión!</a></p>
+      <button type="submit" name="btn_registrar_usuario">Registrarse</button>
+    </form>
+  </div>
 
 </body>
 
 </html>
 
 <?php
-if(isset($_SESSION["usuario"])){
+if (isset($_SESSION["usuario"])) {
 
-    header("location: vista/inicio.php");
+  header("location: vista/inicio.php");
 
 }
 
