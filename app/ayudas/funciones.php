@@ -9,11 +9,11 @@ function traerPublicaciones($query)
 
   if (mysqli_num_rows($res) > 0) {
 
+    ?><ul><?php
+
     while ($fila = mysqli_fetch_array($res)) {
 
       ?>
-
-      <ul>
 
         <li>
 
@@ -43,7 +43,7 @@ function traerPublicaciones($query)
 
             <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
 
-            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+            <a href="publicacion.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/comentar.png" /></a>
 
             <?php echo cantidadComentarios($fila["id_publicacion"]); ?>
@@ -54,11 +54,11 @@ function traerPublicaciones($query)
 
         </li>
 
-      </ul>
-
       <?php
 
     }
+
+    ?></ul><?php
 
   } else {
 
@@ -67,7 +67,7 @@ function traerPublicaciones($query)
   }
 
 }
-
+// INICIO - FUNCIONES DE LIKE
 function likes($id_publicacion){
 
   include("../modelo/conexion.php");
@@ -104,6 +104,42 @@ function cantidadLikes($id_publicacion)
   return mysqli_num_rows($res);
 
 }
+// FIN - FUNCIONES DE LIKE
+
+// INICIO - FUNCIONES COMENTARIOS
+function traerComentarios($query){
+
+  include("../modelo/conexion.php");
+
+  $res = mysqli_query($con, $query);
+
+  if(mysqli_num_rows($res) > 0){
+
+    ?><ul><?php
+
+    while($fila = mysqli_fetch_array($res)){
+
+      ?>
+      
+        <li>
+
+          <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
+
+          <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+
+          <p><?php echo $fila["texto"]; ?></p>
+
+        </li>
+      
+      <?php
+
+    }
+
+    ?></ul><?php
+
+  }
+
+}
 
 function cantidadComentarios($id_publicacion)
 {
@@ -117,7 +153,9 @@ function cantidadComentarios($id_publicacion)
   return mysqli_num_rows($res);
 
 }
+// FIN - FUNCIONES COMENTARIOS
 
+// INICIO - FUNCIONES RESPUESTAS
 function cantidadRespuestas($id_publicacion)
 {
 
@@ -130,7 +168,9 @@ function cantidadRespuestas($id_publicacion)
 return mysqli_num_rows($res);
 
 }
+// FIN - FUNCIONES RESPUESTAS
 
+// INICIO - FUNCIONES DE USUARIO
 function datosUsuario($id_usuario, $datos)
 {
 
@@ -143,5 +183,6 @@ function datosUsuario($id_usuario, $datos)
   return mysqli_fetch_array($res);
 
 }
+// FIN - FUNCIONES DE USUARIO
 
 ?>
