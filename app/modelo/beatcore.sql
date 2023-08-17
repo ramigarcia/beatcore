@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2023 a las 01:53:09
+-- Tiempo de generación: 17-08-2023 a las 03:46:26
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -36,6 +36,37 @@ CREATE TABLE `t_comentarios` (
   `fecha_comentario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `t_comentarios`
+--
+
+INSERT INTO `t_comentarios` (`id_comentario`, `id_usuario`, `id_publicacion`, `texto`, `audio`, `fecha_comentario`) VALUES
+(1, 16, 28, 'No barrdie compaaa como que no :(', '', 2147483647),
+(2, 16, 28, 'La peor', '', 2147483647),
+(3, 18, 29, 'Estoy comentando tu publicación!', '', 2147483647),
+(4, 18, 27, 'No barrdie compaaa como que no :(', '', 2147483647),
+(5, 18, 28, 'Prueba 123 123 123 ', '', 2147483647);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `t_guardados`
+--
+
+CREATE TABLE `t_guardados` (
+  `id_guardado` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_publicacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `t_guardados`
+--
+
+INSERT INTO `t_guardados` (`id_guardado`, `id_usuario`, `id_publicacion`) VALUES
+(6, 18, 28),
+(7, 18, 30);
+
 -- --------------------------------------------------------
 
 --
@@ -45,9 +76,25 @@ CREATE TABLE `t_comentarios` (
 CREATE TABLE `t_likes` (
   `id_like` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_publicacion` int(11) NOT NULL,
+  `id_publicacion` int(11) DEFAULT NULL,
+  `id_comentario` int(11) DEFAULT NULL,
   `fecha_like` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `t_likes`
+--
+
+INSERT INTO `t_likes` (`id_like`, `id_usuario`, `id_publicacion`, `id_comentario`, `fecha_like`) VALUES
+(14, 16, 28, NULL, '2023-08-16'),
+(15, 16, 27, NULL, '2023-08-16'),
+(16, 16, 29, NULL, '2023-08-16'),
+(18, 18, 29, NULL, '2023-08-16'),
+(19, 18, 30, NULL, '2023-08-16'),
+(20, 18, 28, NULL, '2023-08-16'),
+(24, 18, NULL, 1, '2023-08-16'),
+(25, 18, NULL, 2, '2023-08-16'),
+(27, 18, NULL, 4, '2023-08-16');
 
 -- --------------------------------------------------------
 
@@ -76,7 +123,8 @@ CREATE TABLE `t_publicaciones` (
 INSERT INTO `t_publicaciones` (`id_publicacion`, `id_respuesta`, `id_usuario`, `texto`, `audio`, `img1`, `img2`, `img3`, `img4`, `video`, `fecha_publicacion`) VALUES
 (27, NULL, 22, 'Diablo, no hay publicaciones\r\n', '', '', '', '', '', '', '2023-08-16'),
 (28, NULL, 22, 'Diablo, no hay publicaciones\r\n', '', '', '', '', '', '', '2023-08-16'),
-(29, NULL, 16, 'Otra publicación', '', '', '', '', '', '', '2023-08-16');
+(29, NULL, 16, 'Otra publicación', '', '', '', '', '', '', '2023-08-16'),
+(30, NULL, 18, 'P TS KH TS P TS KH TS', '', '', '', '', '', '', '2023-08-16');
 
 -- --------------------------------------------------------
 
@@ -114,7 +162,10 @@ CREATE TABLE `t_seguidores` (
 --
 
 INSERT INTO `t_seguidores` (`id_seguimiento`, `id_seguidor`, `id_seguido`) VALUES
+(16, 16, 18),
+(18, 16, 20),
 (15, 16, 21),
+(17, 16, 22),
 (12, 18, 16),
 (6, 18, 17),
 (13, 18, 21),
@@ -168,12 +219,19 @@ ALTER TABLE `t_comentarios`
   ADD KEY `comentario->publicaion` (`id_publicacion`);
 
 --
+-- Indices de la tabla `t_guardados`
+--
+ALTER TABLE `t_guardados`
+  ADD PRIMARY KEY (`id_guardado`);
+
+--
 -- Indices de la tabla `t_likes`
 --
 ALTER TABLE `t_likes`
   ADD PRIMARY KEY (`id_like`),
   ADD KEY `id_usuario` (`id_usuario`,`id_publicacion`),
-  ADD KEY `like_publicacion` (`id_publicacion`);
+  ADD KEY `like_publicacion` (`id_publicacion`),
+  ADD KEY `like_comentario` (`id_comentario`);
 
 --
 -- Indices de la tabla `t_publicaciones`
@@ -212,19 +270,25 @@ ALTER TABLE `t_usuarios`
 -- AUTO_INCREMENT de la tabla `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `t_guardados`
+--
+ALTER TABLE `t_guardados`
+  MODIFY `id_guardado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `t_likes`
 --
 ALTER TABLE `t_likes`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `t_publicaciones`
 --
 ALTER TABLE `t_publicaciones`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `t_roles`
@@ -236,7 +300,7 @@ ALTER TABLE `t_roles`
 -- AUTO_INCREMENT de la tabla `t_seguidores`
 --
 ALTER TABLE `t_seguidores`
-  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `t_usuarios`
@@ -259,6 +323,7 @@ ALTER TABLE `t_comentarios`
 -- Filtros para la tabla `t_likes`
 --
 ALTER TABLE `t_likes`
+  ADD CONSTRAINT `like_comentario` FOREIGN KEY (`id_comentario`) REFERENCES `t_comentarios` (`id_comentario`),
   ADD CONSTRAINT `like_publicacion` FOREIGN KEY (`id_publicacion`) REFERENCES `t_publicaciones` (`id_publicacion`),
   ADD CONSTRAINT `likes->usuario` FOREIGN KEY (`id_usuario`) REFERENCES `t_usuarios` (`id_usuario`);
 
