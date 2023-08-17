@@ -38,30 +38,30 @@ session_start();
       </ul>
     </nav>
   </header>
-  <!-- MENSAJE DE "FELICIDADES, TE REGISTRASTE" -->
-
-  <?php
-
-  if (isset($_SESSION["msj"])) {
-
-    echo $_SESSION["msj"];
-
-    unset($_SESSION["msj"]);
-
-  }
-
-  ?>
-
-  <!-- FIN DEL MENSAJE -->
 
   <!-- FORMULARIO -->
   <div class="container">
     <form action="login.php" method="POST">
       <legend>Iniciar Sesion</legend>
+      <!-- MENSAJE DE "FELICIDADES, TE REGISTRASTE" -->
+
+      <?php
+
+      if (isset($_SESSION["msj"])) {
+
+        echo $_SESSION["msj"];
+
+        unset($_SESSION["msj"]);
+
+      }
+
+      ?>
+
+      <!-- FIN DEL MENSAJE -->
       <label for="usuario">
         <span>Nombre de usuario</span>
         <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-          pattern="[A-Za-z]{3,20}" required autofocus>
+          required autofocus>
       </label>
       <label for="clave">
         <span>Contraseña</span>

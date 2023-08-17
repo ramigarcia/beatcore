@@ -67,7 +67,7 @@
 
   $id_usuario = $_SESSION["id_usuario"];
 
-  $query = "SELECT * FROM t_seguidores INNER JOIN t_usuarios ON t_seguidores.id_seguido = t_usuarios.id_usuario WHERE id_seguidor = '$id_usuario' ORDER BY id_seguimiento DESC LIMIT 1";
+  $query = "SELECT * FROM t_seguidores INNER JOIN t_usuarios ON t_seguidores.id_seguido = t_usuarios.id_usuario WHERE id_seguidor = '$id_usuario' ORDER BY id_seguimiento DESC LIMIT 3";
 
   $res = mysqli_query($con, $query);
 
@@ -100,33 +100,38 @@
 
   
   <!-- PERFILES RECOMENDADOS -->
-  <p>Perfiles recomendados</p>
 
   <?php
 
-  $query = "SELECT id_usuario, usuario, foto_perfil FROM t_usuarios WHERE id_usuario != '$id_usuario' ORDER BY id_usuario DESC LIMIT 1";
+  $query = "SELECT id_usuario, usuario, foto_perfil FROM t_usuarios WHERE id_usuario != '$id_usuario' ORDER BY id_usuario DESC LIMIT 3";
 
   $res = mysqli_query($con, $query);
 
-  while ($fila = mysqli_fetch_array($res)) {
+  if(mysqli_num_rows($res)>0):
 
-    ?>
+    ?><p>Perfiles recomendados</p><?php
 
-    <ul>
+    while ($fila = mysqli_fetch_array($res)) {
 
-      <li>
+      ?>
 
-        <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
+      <ul>
 
-        <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+        <li>
 
-      </li>
+          <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
 
-    </ul>
+          <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
-    <?php
+        </li>
 
-  }
+      </ul>
+
+      <?php
+
+    }
+
+  endif;
   ?>
 
 </div>

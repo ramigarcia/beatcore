@@ -44,7 +44,7 @@
       <label for="usuario">
         <span>Usuario</span>
         <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-          pattern="[A-Za-z]{3,20}" required autofocus>
+           required autofocus>
       </label>
 
       <label for="gmail">
@@ -69,11 +69,10 @@
       </label>
 
       <label for="terminos_condiciones" class="terminos">
-        <input type="checkbox" name="terminos_condiciones" id="terminos_condiciones" required>
+        <input type="checkbox" name="terminos_condiciones" id="terminos_condiciones" value="1" required>
         <span>Acepto los términos y <a href="#">condiciones</a></span>
       </label>
 
-      <p>¿Ya tienes cuenta? <a href="iniciar_sesion.php">¡Inicia sesión!</a></p>
       <button type="submit" name="btn_registrar_usuario">Registrarse</button>
     </form>
   </div>
