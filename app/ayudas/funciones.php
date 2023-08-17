@@ -47,7 +47,7 @@ function traerPublicaciones($query)
 
             <?php echo cantidadComentarios($fila["id_publicacion"]); ?>
 
-            <?php likes($fila["id_publicacion"]); ?>
+            <?php likesPublicacion($fila["id_publicacion"]); ?>
 
           </div>
 
@@ -67,7 +67,7 @@ function traerPublicaciones($query)
 
 }
 // INICIO - FUNCIONES DE LIKE
-function likes($id_publicacion){
+function likesPublicacion($id_publicacion){
 
   include("../modelo/conexion.php");
 
@@ -87,11 +87,11 @@ function likes($id_publicacion){
 
   }
 
-  echo cantidadLikes($id_publicacion);
+  echo cantidadLikesPublicacion($id_publicacion);
 
 }
 
-function cantidadLikes($id_publicacion)
+function cantidadLikesPublicacion($id_publicacion)
 {
 
   include("../modelo/conexion.php");
@@ -128,6 +128,7 @@ function guardar($id_publicacion){
 
 }
 // FIN - GUARDAR PUBLICACION
+
 // INICIO - FUNCIONES COMENTARIOS
 function traerComentarios($query){
 
@@ -151,6 +152,8 @@ function traerComentarios($query){
 
           <p><?php echo $fila["texto"]; ?></p>
 
+          <?php likeComentario($fila["id_comentario"], $fila["id_publicacion"]); ?>
+
         </li>
       
       <?php
@@ -169,6 +172,42 @@ function cantidadComentarios($id_publicacion)
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_comentarios WHERE id_publicacion = '$id_publicacion'";
+
+  $res = mysqli_query($con, $query);
+
+  return mysqli_num_rows($res);
+
+}
+
+function likeComentario($id_comentario, $id_publicacion){
+
+  include("../modelo/conexion.php");
+
+  $id_usuario = $_SESSION["id_usuario"];
+
+  $query = "SELECT * FROM t_likes WHERE id_usuario = '$id_usuario' AND id_comentario = '$id_comentario'";
+
+  $dio_like = mysqli_num_rows(mysqli_query($con, $query));
+
+  if($dio_like){
+
+    ?><a href="../controlador/like.php?id_comentario=<?php echo $id_comentario ?>&id_publicacion_c=<?php echo $id_publicacion; ?>"><img src="../../publico/img/iconos/like_solido.png" /></a><?php
+
+  }else{
+
+    ?><a href="../controlador/like.php?id_comentario=<?php echo $id_comentario ?>&id_publicacion_c=<?php echo $id_publicacion; ?>"><img src="../../publico/img/iconos/like_regular.png" /></a><?php
+
+  }
+
+  echo cantidadLikesComentario($id_comentario);
+
+}
+
+function cantidadLikesComentario($id_comentario){
+
+  include("../modelo/conexion.php");
+
+  $query = "SELECT * FROM t_likes WHERE id_comentario = '$id_comentario'";
 
   $res = mysqli_query($con, $query);
 
