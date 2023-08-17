@@ -33,6 +33,10 @@ include("../componentes/head.php");
         <?php echo $fila["usuario"]; ?>
       </h1>
 
+      <h2><?= $fila["nombre"] ." ". $fila["apellido"]; ?></h2>
+
+      <p><?= $fila["descripcion"]; ?></p>
+
       <?php
 
       if ($id_usuarioP != $tu_usuario) {

@@ -19,8 +19,7 @@ function traerPublicaciones($query)
 
           <div class="publicacion">
 
-            <!-- <img src="<?php //echo $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" /> -->
-            <img src="../../publico/img/foto_perfil/por_defecto.png" width="20px" alt="foto de perfil" />
+            <img src="<?= $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
 
             <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 

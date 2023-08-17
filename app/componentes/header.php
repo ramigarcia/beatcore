@@ -43,6 +43,8 @@ if (empty($_SESSION["usuario"])) {
 
       <li><a href="guardado.php">Publicaciones guardadas</a></li>
 
+      <li><a href="editar_perfil.php">Editar perfil</a></li>
+
       <li><a href="../controlador/cerrar_sesion.php">Cerrar sesión</a></li>
 
     </ul>
