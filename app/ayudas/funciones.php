@@ -41,17 +41,14 @@ function traerPublicaciones($query)
             <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/responder.png" /></a>
 
-            <!-- <?php // echo cantidadRespuestas($fila["id_publicacion"]); ?> -->
+            <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
 
             <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/comentar.png" /></a>
 
             <?php echo cantidadComentarios($fila["id_publicacion"]); ?>
 
-            <a href="../controlador/like.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
-                src="../../publico/img/iconos/like_regular.png" /></a>
-
-            <?php echo cantidadLikes($fila["id_publicacion"]); ?>
+            <?php likes($fila["id_publicacion"]); ?>
 
           </div>
 
@@ -68,6 +65,30 @@ function traerPublicaciones($query)
     echo "No hay publicaciones";
 
   }
+
+}
+
+function likes($id_publicacion){
+
+  include("../modelo/conexion.php");
+
+  $id_usuario = $_SESSION["id_usuario"];
+
+  $query = "SELECT * FROM t_likes WHERE id_usuario = '$id_usuario' AND id_publicacion = '$id_publicacion'";
+
+  $dio_like = mysqli_num_rows(mysqli_query($con, $query));
+
+  if($dio_like){
+
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/like_solido.png" /></a><?php
+
+  }else{
+
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/like_regular.png" /></a><?php
+
+  }
+
+  echo cantidadLikes($id_publicacion);
 
 }
 
@@ -97,18 +118,18 @@ function cantidadComentarios($id_publicacion)
 
 }
 
-// function cantidadRespuestas($id_publicacion)
-// {
+function cantidadRespuestas($id_publicacion)
+{
 
-//   include("../modelo/conexion.php");
+  include("../modelo/conexion.php");
 
-//   $query = "SELECT * FROM t_publicaciones WHERE id_respuesta = '$id_publicacion'";
+  $query = "SELECT * FROM t_publicaciones WHERE id_respuesta = '$id_publicacion'";
 
-//   $res = mysqli_query($con, $query);
+  $res = mysqli_query($con, $query);
 
-// return mysqli_num_rows($res);
+return mysqli_num_rows($res);
 
-// }
+}
 
 function datosUsuario($id_usuario, $datos)
 {
