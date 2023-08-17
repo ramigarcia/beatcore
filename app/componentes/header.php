@@ -41,6 +41,8 @@ if (empty($_SESSION["usuario"])) {
 
       <li>Modo oscuro</li>
 
+      <li><a href="guardado.php">Publicaciones guardadas</a></li>
+
       <li><a href="../controlador/cerrar_sesion.php">Cerrar sesión</a></li>
 
     </ul>

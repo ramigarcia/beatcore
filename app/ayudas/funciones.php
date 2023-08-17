@@ -35,8 +35,7 @@ function traerPublicaciones($query)
             <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/compartir.png" /></a>
 
-            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
-                src="../../publico/img/iconos/guardar_regular.png" /></a>
+            <?php guardar($fila["id_publicacion"]); ?>
 
             <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/responder.png" /></a>
@@ -106,6 +105,29 @@ function cantidadLikes($id_publicacion)
 }
 // FIN - FUNCIONES DE LIKE
 
+// INICIO - FUNCIONES DE GUARDAR PUBLICACION
+function guardar($id_publicacion){
+
+  include("../modelo/conexion.php");
+
+  $id_usuario = $_SESSION["id_usuario"];
+
+  $query = "SELECT * FROM t_guardados WHERE id_usuario = '$id_usuario' AND id_publicacion = '$id_publicacion'";
+
+  $lo_guardo = mysqli_num_rows(mysqli_query($con, $query));
+
+  if($lo_guardo){
+
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/guardar_solido.png" /></a><?php
+
+  }else{
+
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/guardar_regular.png" /></a><?php
+
+  }
+
+}
+// FIN - GUARDAR PUBLICACION
 // INICIO - FUNCIONES COMENTARIOS
 function traerComentarios($query){
 
