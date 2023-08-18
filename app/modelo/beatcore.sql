@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2023 a las 03:46:26
+-- Tiempo de generación: 18-08-2023 a las 06:27:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -41,11 +41,9 @@ CREATE TABLE `t_comentarios` (
 --
 
 INSERT INTO `t_comentarios` (`id_comentario`, `id_usuario`, `id_publicacion`, `texto`, `audio`, `fecha_comentario`) VALUES
-(1, 16, 28, 'No barrdie compaaa como que no :(', '', 2147483647),
-(2, 16, 28, 'La peor', '', 2147483647),
-(3, 18, 29, 'Estoy comentando tu publicación!', '', 2147483647),
-(4, 18, 27, 'No barrdie compaaa como que no :(', '', 2147483647),
-(5, 18, 28, 'Prueba 123 123 123 ', '', 2147483647);
+(9, 25, 33, 'Que buen datooo me diste campeónnn. Pero creoo que nooo te pregunteeeee', '', 2147483647),
+(10, 26, 33, 'Preguntame compa', '', 2147483647),
+(11, 27, 40, 'dfsdfsfsfs', '', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -58,14 +56,6 @@ CREATE TABLE `t_guardados` (
   `id_usuario` int(11) NOT NULL,
   `id_publicacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `t_guardados`
---
-
-INSERT INTO `t_guardados` (`id_guardado`, `id_usuario`, `id_publicacion`) VALUES
-(6, 18, 28),
-(7, 18, 30);
 
 -- --------------------------------------------------------
 
@@ -86,15 +76,13 @@ CREATE TABLE `t_likes` (
 --
 
 INSERT INTO `t_likes` (`id_like`, `id_usuario`, `id_publicacion`, `id_comentario`, `fecha_like`) VALUES
-(14, 16, 28, NULL, '2023-08-16'),
-(15, 16, 27, NULL, '2023-08-16'),
-(16, 16, 29, NULL, '2023-08-16'),
-(18, 18, 29, NULL, '2023-08-16'),
-(19, 18, 30, NULL, '2023-08-16'),
-(20, 18, 28, NULL, '2023-08-16'),
-(24, 18, NULL, 1, '2023-08-16'),
-(25, 18, NULL, 2, '2023-08-16'),
-(27, 18, NULL, 4, '2023-08-16');
+(42, 24, 33, NULL, '2023-08-17'),
+(43, 25, 33, NULL, '2023-08-17'),
+(44, 26, 33, NULL, '2023-08-17'),
+(45, 26, NULL, 9, '2023-08-17'),
+(49, 27, 42, NULL, '2023-08-18'),
+(50, 27, 33, NULL, '2023-08-18'),
+(51, 27, NULL, 11, '2023-08-18');
 
 -- --------------------------------------------------------
 
@@ -121,10 +109,15 @@ CREATE TABLE `t_publicaciones` (
 --
 
 INSERT INTO `t_publicaciones` (`id_publicacion`, `id_respuesta`, `id_usuario`, `texto`, `audio`, `img1`, `img2`, `img3`, `img4`, `video`, `fecha_publicacion`) VALUES
-(27, NULL, 22, 'Diablo, no hay publicaciones\r\n', '', '', '', '', '', '', '2023-08-16'),
-(28, NULL, 22, 'Diablo, no hay publicaciones\r\n', '', '', '', '', '', '', '2023-08-16'),
-(29, NULL, 16, 'Otra publicación', '', '', '', '', '', '', '2023-08-16'),
-(30, NULL, 18, 'P TS KH TS P TS KH TS', '', '', '', '', '', '', '2023-08-16');
+(33, NULL, 24, 'Ahora tengo foto de perfil y de portada!!\r\n', '', '', '', '', '', '', '2023-08-17'),
+(35, NULL, 27, 'sdfaf', '', '', '', '', '', '', '2023-08-17'),
+(36, NULL, 27, 'dsadsadasdasd', '', '', '', '', '', '', '2023-08-18'),
+(37, NULL, 27, 'dsadasdasd', '', '', '', '', '', '', '2023-08-18'),
+(38, NULL, 27, 'Otra publicacion mas', '', '', '', '', '', '', '2023-08-18'),
+(39, NULL, 27, '??', '', '', '', '', '', '', '2023-08-18'),
+(40, NULL, 27, '??', '', '', '', '', '', '', '2023-08-18'),
+(41, NULL, 27, '??', '', '', '', '', '', '', '2023-08-18'),
+(42, NULL, 27, 'asdsabdjasd', '', '', '', '', '', '', '2023-08-18');
 
 -- --------------------------------------------------------
 
@@ -162,14 +155,10 @@ CREATE TABLE `t_seguidores` (
 --
 
 INSERT INTO `t_seguidores` (`id_seguimiento`, `id_seguidor`, `id_seguido`) VALUES
-(16, 16, 18),
-(18, 16, 20),
-(15, 16, 21),
-(17, 16, 22),
-(12, 18, 16),
-(6, 18, 17),
-(13, 18, 21),
-(9, 21, 17);
+(24, 25, 24),
+(29, 26, 24),
+(28, 26, 25),
+(30, 26, 27);
 
 -- --------------------------------------------------------
 
@@ -198,13 +187,10 @@ CREATE TABLE `t_usuarios` (
 --
 
 INSERT INTO `t_usuarios` (`id_usuario`, `usuario`, `gmail`, `telefono`, `clave`, `nombre`, `apellido`, `fecha_nacimiento`, `descripcion`, `foto_perfil`, `foto_portada`, `id_rol`, `fecha_creacion`) VALUES
-(16, 'Chowsen', 'chowchow@gmail.com', '+54 9 11 3143-6286', '202cb962ac59075b964b07152d234b70', 'Nicolas Leonel', 'Corbalan', '2005-06-20', 'Lele para los amigos...', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-04'),
-(17, 'Usuario', 'usuario_falso@gmail.com', '', '202cb962ac59075b964b07152d234b70', '', '', '2023-08-07', '', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-12'),
-(18, 'peke', 'peke@gmail.com', '', '202cb962ac59075b964b07152d234b70', '', '', '2023-08-15', '', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-15'),
-(19, 'kirito', 'kirito@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Juan', 'Albondiga', '1212-12-12', '', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-15'),
-(20, 'juansito', 'juan@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Juan', 'Alfonsiño', '2020-02-20', '', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-15'),
-(21, 'moyano', 'moya@gmail.com', '', '202cb962ac59075b964b07152d234b70', '', '', '2000-02-20', '', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-15'),
-(22, 'nuevoUsuario', 'user@gmail.com', '', '202cb962ac59075b964b07152d234b70', '', '', '2000-02-20', 'Esto es una descripción de ejemplo para que vean como funciona :)', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-16');
+(24, 'leordio_', 'nicolaslc.main@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Nicolas Leonel', 'Corbalan', '2005-06-20', 'Lele para los amigos...', '../../publico/img/foto_perfil/chica_anime.jpg', '../../publico/img/foto_portada/zapatillas.png', 1, '2023-08-17'),
+(25, 'chowsen', 'chowchow@gmail.com', '', '202cb962ac59075b964b07152d234b70', '', '', '2004-07-20', '', '../../publico/img/foto_perfil/conejito.jpg', '../../publico/img/foto_portada/una_flor_para_otra_flor.jpg', 1, '2023-08-17'),
+(26, 'peke', 'peke@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Ariel Axel Iván', 'Lopez Benitez', '2004-08-06', 'Pepengaa!!', '../../publico/img/foto_perfil/fantasmita_cool.jpg', '../../publico/img/foto_portada/woooooow.jpg', 1, '2023-08-17'),
+(27, 'ramiii', 'rg@gmail.com', '', '7815696ecbf1c96e6894b779456d330e', '', '', '2004-05-03', '', '../../publico/img/foto_perfil/por_defecto.png', '../../publico/img/foto_portada/por_defecto.png', 1, '2023-08-17');
 
 --
 -- Índices para tablas volcadas
@@ -270,25 +256,25 @@ ALTER TABLE `t_usuarios`
 -- AUTO_INCREMENT de la tabla `t_comentarios`
 --
 ALTER TABLE `t_comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `t_guardados`
 --
 ALTER TABLE `t_guardados`
-  MODIFY `id_guardado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_guardado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `t_likes`
 --
 ALTER TABLE `t_likes`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `t_publicaciones`
 --
 ALTER TABLE `t_publicaciones`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `t_roles`
@@ -300,13 +286,13 @@ ALTER TABLE `t_roles`
 -- AUTO_INCREMENT de la tabla `t_seguidores`
 --
 ALTER TABLE `t_seguidores`
-  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `t_usuarios`
 --
 ALTER TABLE `t_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas

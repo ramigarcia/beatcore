@@ -1,0 +1,8 @@
+@import url('./components/sidebar.css');
+@import url('./components/publicaciones.css');
+
+.nueva-publi {
+  border: 1px solid red;
+  width: 95%;
+  margin: auto;
+}

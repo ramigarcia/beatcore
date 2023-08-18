@@ -1,0 +1,49 @@
+/* NAVEGACION */
+
+.navegacion {
+  border: 1px solid blue;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  /* border: 1px solid red; */
+  position: absolute;
+  left: 20px;
+  font-size: 25px;
+}
+
+.buscador {
+  border: 1px solid red;
+  margin: auto;
+  width: 200px;
+}
+
+.nav-lista {
+  border: 1px solid black;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin-right: 20px;
+}
+
+.nav-lista-item {
+  border: 1px solid red;
+  height: 24px;
+}
+
+/* MENU TRES PUNTITOS */
+
+.nav-lista .lista-menu {
+  border: 1px solid red;
+  /* display: none; */
+  width: 200px;
+  position: absolute;
+  top: 55px;
+  right: 20px;
+  border-radius: 10px;
+}

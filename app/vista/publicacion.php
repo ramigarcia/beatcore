@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- HEAD -->
-<?php
-include("../componentes/head.php");
-?>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeatCore</title>
+  <!-- CDN - BOXICONS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- META PROPS -->
+</head>
 
 <body>
   <?php
@@ -13,42 +21,42 @@ include("../componentes/head.php");
     header("location: ../../");
   }
 
-//   include("../componentes/sidebar.php");
+  //   include("../componentes/sidebar.php");
+  
+  if (isset($_GET["id_publicacion"])) {
 
-    if(isset($_GET["id_publicacion"])){
+    include("../modelo/conexion.php");
 
-        include("../modelo/conexion.php");
+    $id_publicacion = $_GET["id_publicacion"];
 
-        $id_publicacion = $_GET["id_publicacion"];
+    $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_publicacion' ORDER BY id_publicacion DESC";
 
-        $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_publicacion' ORDER BY id_publicacion DESC";
+    traerPublicaciones($query);
 
-        traerPublicaciones($query);
+    ?>
 
-        ?>
-        
-            <h3>Nuevo comentario</h3>
+    <h3>Nuevo comentario</h3>
 
-            <form action="../controlador/comentar.php?id_publicacion=<?php echo $id_publicacion; ?>" method="POST">
+    <form action="../controlador/comentar.php?id_publicacion=<?php echo $id_publicacion; ?>" method="POST">
 
-                <label for="texto">
+      <label for="texto">
 
-                    <span></span>
+        <span></span>
 
-                    <input name="texto" id="texto" autofocus>
+        <input name="texto" id="texto" autofocus>
 
-                </label>
+      </label>
 
-                <input type="submit" name="btn_comentar" value="Comentar">
+      <input type="submit" name="btn_comentar" value="Comentar">
 
-            </form>
+    </form>
 
-        <?php
+    <?php
 
-        $query = "SELECT * FROM t_comentarios INNER JOIN t_usuarios ON t_comentarios.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_publicacion' ORDER BY id_comentario DESC";
+    $query = "SELECT * FROM t_comentarios INNER JOIN t_usuarios ON t_comentarios.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_publicacion' ORDER BY id_comentario DESC";
 
-        traerComentarios($query);
+    traerComentarios($query);
 
-    }
+  }
 
-?>
+  ?>

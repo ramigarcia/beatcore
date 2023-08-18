@@ -2,22 +2,16 @@
 
 function traerPublicaciones($query)
 {
-
   include("../modelo/conexion.php");
 
   $res = mysqli_query($con, $query);
 
   if (mysqli_num_rows($res) > 0) {
-
-    ?><ul><?php
-
-    while ($fila = mysqli_fetch_array($res)) {
-
-      ?>
-
+    ?>
+    <ul>
+      <?php while ($fila = mysqli_fetch_array($res)) { ?>
         <li>
-
-          <div class="publicacion">
+          <div class="carta-publi">
 
             <img src="<?= $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
 
@@ -52,11 +46,13 @@ function traerPublicaciones($query)
 
         </li>
 
-      <?php
+        <?php
 
-    }
+      }
 
-    ?></ul><?php
+      ?>
+    </ul>
+    <?php
 
   } else {
 
@@ -66,7 +62,8 @@ function traerPublicaciones($query)
 
 }
 // INICIO - FUNCIONES DE LIKE
-function likesPublicacion($id_publicacion){
+function likesPublicacion($id_publicacion)
+{
 
   include("../modelo/conexion.php");
 
@@ -76,13 +73,17 @@ function likesPublicacion($id_publicacion){
 
   $dio_like = mysqli_num_rows(mysqli_query($con, $query));
 
-  if($dio_like){
+  if ($dio_like) {
 
-    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/like_solido.png" /></a><?php
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img
+        src="../../publico/img/iconos/like_solido.png" /></a>
+    <?php
 
-  }else{
+  } else {
 
-    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/like_regular.png" /></a><?php
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img
+        src="../../publico/img/iconos/like_regular.png" /></a>
+    <?php
 
   }
 
@@ -105,7 +106,8 @@ function cantidadLikesPublicacion($id_publicacion)
 // FIN - FUNCIONES DE LIKE
 
 // INICIO - FUNCIONES DE GUARDAR PUBLICACION
-function guardar($id_publicacion){
+function guardar($id_publicacion)
+{
 
   include("../modelo/conexion.php");
 
@@ -115,13 +117,17 @@ function guardar($id_publicacion){
 
   $lo_guardo = mysqli_num_rows(mysqli_query($con, $query));
 
-  if($lo_guardo){
+  if ($lo_guardo) {
 
-    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/guardar_solido.png" /></a><?php
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img
+        src="../../publico/img/iconos/guardar_solido.png" /></a>
+    <?php
 
-  }else{
+  } else {
 
-    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img src="../../publico/img/iconos/guardar_regular.png" /></a><?php
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img
+        src="../../publico/img/iconos/guardar_regular.png" /></a>
+    <?php
 
   }
 
@@ -129,45 +135,36 @@ function guardar($id_publicacion){
 // FIN - GUARDAR PUBLICACION
 
 // INICIO - FUNCIONES COMENTARIOS
-function traerComentarios($query){
+function traerComentarios($query)
+{
 
   include("../modelo/conexion.php");
 
   $res = mysqli_query($con, $query);
 
-  if(mysqli_num_rows($res) > 0){
-
-    ?><ul><?php
-
-    while($fila = mysqli_fetch_array($res)){
-
-      ?>
-      
+  if (mysqli_num_rows($res) > 0) {
+    ?>
+    <ul>
+      <?php while ($fila = mysqli_fetch_array($res)) { ?>
         <li>
-
           <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
 
           <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
-          <p><?php echo $fila["texto"]; ?></p>
+          <p>
+            <?php echo $fila["texto"]; ?>
+          </p>
 
           <?php likeComentario($fila["id_comentario"], $fila["id_publicacion"]); ?>
-
         </li>
-      
-      <?php
-
-    }
-
-    ?></ul><?php
-
+      <?php } ?>
+    </ul>
+    <?php
   }
-
 }
 
 function cantidadComentarios($id_publicacion)
 {
-
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_comentarios WHERE id_publicacion = '$id_publicacion'";
@@ -175,11 +172,10 @@ function cantidadComentarios($id_publicacion)
   $res = mysqli_query($con, $query);
 
   return mysqli_num_rows($res);
-
 }
 
-function likeComentario($id_comentario, $id_publicacion){
-
+function likeComentario($id_comentario, $id_publicacion)
+{
   include("../modelo/conexion.php");
 
   $id_usuario = $_SESSION["id_usuario"];
@@ -188,13 +184,19 @@ function likeComentario($id_comentario, $id_publicacion){
 
   $dio_like = mysqli_num_rows(mysqli_query($con, $query));
 
-  if($dio_like){
+  if ($dio_like) {
+    ?>
+    <a
+      href="../controlador/like.php?id_comentario=<?php echo $id_comentario ?>&id_publicacion_c=<?php echo $id_publicacion; ?>"><img
+        src="../../publico/img/iconos/like_solido.png" /></a>
+    <?php
 
-    ?><a href="../controlador/like.php?id_comentario=<?php echo $id_comentario ?>&id_publicacion_c=<?php echo $id_publicacion; ?>"><img src="../../publico/img/iconos/like_solido.png" /></a><?php
+  } else {
 
-  }else{
-
-    ?><a href="../controlador/like.php?id_comentario=<?php echo $id_comentario ?>&id_publicacion_c=<?php echo $id_publicacion; ?>"><img src="../../publico/img/iconos/like_regular.png" /></a><?php
+    ?><a
+      href="../controlador/like.php?id_comentario=<?php echo $id_comentario ?>&id_publicacion_c=<?php echo $id_publicacion; ?>"><img
+        src="../../publico/img/iconos/like_regular.png" /></a>
+    <?php
 
   }
 
@@ -202,7 +204,8 @@ function likeComentario($id_comentario, $id_publicacion){
 
 }
 
-function cantidadLikesComentario($id_comentario){
+function cantidadLikesComentario($id_comentario)
+{
 
   include("../modelo/conexion.php");
 
@@ -225,7 +228,7 @@ function cantidadRespuestas($id_publicacion)
 
   $res = mysqli_query($con, $query);
 
-return mysqli_num_rows($res);
+  return mysqli_num_rows($res);
 
 }
 // FIN - FUNCIONES RESPUESTAS

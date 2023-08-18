@@ -1,0 +1,10 @@
+/* CARTA DE PUBLICACION */
+.carta-publi {
+  border: 1px solid red;
+  margin: 0 auto 20px auto;
+  /* max-width: 800px; */
+  height: 150px;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 15px;
+}

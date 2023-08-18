@@ -1,25 +1,21 @@
 <?php
 
-    include("../modelo/conexion.php");
+include("../modelo/conexion.php");
 
-    session_start();
+session_start();
 
-    if(isset($_POST["btn_publicar"])){
+if (isset($_POST["btn_publicar"])) {
 
-        $id_usuario = $_SESSION["id_usuario"];
-        
-        $texto = $_POST["texto"];
+  $id_usuario = $_SESSION["id_usuario"];
 
-        $query = "INSERT INTO t_publicaciones(id_usuario, texto) VALUES ('$id_usuario', '$texto')";
+  $texto = $_POST["texto"];
 
-        $res = mysqli_query($con, $query);
+  $query = "INSERT INTO t_publicaciones(id_usuario, texto) VALUES ('$id_usuario', '$texto')";
 
-        if($res){
+  $res = mysqli_query($con, $query);
 
-            header("Location: ../vista/inicio.php");
-
-        }
-
-    }
-
+  if ($res) {
+    header("Location: ../vista/inicio.php");
+  }
+}
 ?>
