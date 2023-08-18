@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <!-- HEAD -->
 
 <head>
@@ -10,13 +10,12 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/editar_perfil.css">
   <!-- META PROPS -->
 </head>
 
 <body>
-  <?php
-  include("../componentes/header.php");
-  ?>
+  <?php include("../componentes/header.php"); ?>
   <div class="wrapper">
     <?php
     if (empty($_SESSION["usuario"])) {
@@ -30,41 +29,44 @@
     $fila = datosUsuario($id_usuario, "*");
 
     ?>
+    <div class="edit-perfil">
+      <main>
+        <form action="../controlador/editar_usuario.php" method="POST" enctype="multipart/form-data">
 
-    <form action="../controlador/editar_usuario.php" method="POST" enctype="multipart/form-data">
+          <label for="foto_perfil" class="label-foto-perfil">
+            <span>Foto de perfil</span>
+            <input type="file" name="foto_perfil" id="foto_perfil">
+          </label>
 
-      <label for="foto_perfil">
-        <span>Foto de perfil</span>
-        <input type="file" name="foto_perfil" id="foto_perfil">
-      </label>
+          <label for="foto_portada">
+            <span>Foto de portada</span>
+            <input type="file" name="foto_portada" id="foto_portada">
+          </label>
 
-      <label for="foto_portada">
-        <span>Foto de portada</span>
-        <input type="file" name="foto_portada" id="foto_portada">
-      </label>
+          <label for="usuario">
+            <span>Usuario</span>
+            <input type="text" name="usuario" id="usuario" value="<?= $fila["usuario"] ?>">
+          </label>
 
-      <label for="usuario">
-        <span>Usuario</span>
-        <input type="text" name="usuario" id="usuario" value="<?= $fila["usuario"] ?>">
-      </label>
+          <label for="nombre">
+            <span>Nombre</span>
+            <input type="text" name="nombre" id="nombre" value="<?= $fila["nombre"] ?>">
+          </label>
 
-      <label for="nombre">
-        <span>Nombre</span>
-        <input type="text" name="nombre" id="nombre" value="<?= $fila["nombre"] ?>">
-      </label>
+          <label for="apellido">
+            <span>Apellido</span>
+            <input type="text" name="apellido" id="apellido" value="<?= $fila["apellido"] ?>">
+          </label>
 
-      <label for="apellido">
-        <span>Apellido</span>
-        <input type="text" name="apellido" id="apellido" value="<?= $fila["apellido"] ?>">
-      </label>
+          <label for="descr">
+            <span>Descripción</span>
+            <textarea name="descr" id="descr"><?= $fila["descripcion"] ?></textarea>
+          </label>
 
-      <label for="descr">
-        <span>Descripción</span>
-        <textarea name="descr" id="descr"><?= $fila["descripcion"] ?></textarea>
-      </label>
-
-      <input type="submit" name="btn_editar" value="Guardar cambios">
-    </form>
+          <input type="submit" name="btn_editar" value="Guardar cambios">
+        </form>
+      </main>
+    </div>
   </div>
 </body>
 

@@ -9,86 +9,99 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .seguidores {
+      grid-area: contenidoP;
+    }
+  </style>
   <!-- META PROPS -->
 </head>
 
 <body>
   <?php
   include("../componentes/header.php");
-  include("../componentes/sidebar.php");
-
-  if (isset($_GET['id_usuario'])) {
-
-    $id_usuario = $_GET["id_usuario"];
-
-    $usuario = datosUsuario($id_usuario, "usuario");
-
-    ?>
-    <h2>Seguidores de <a href='perfil.php?id_usuario=<?php echo $id_usuario; ?>'><?php echo $usuario["usuario"]; ?></a>
-    </h2>
+  ?>
+  <div class="wrapper">
     <?php
+    include("../componentes/sidebar.php");
 
-    // INICIO - MENSAJE
-  
-    if (isset($_SESSION["msj"])) {
+    if (isset($_GET['id_usuario'])) {
 
-      echo $_SESSION["msj"];
+      $id_usuario = $_GET["id_usuario"];
 
-      unset($_SESSION["msj"]);
+      $usuario = datosUsuario($id_usuario, "usuario");
 
-    }
+      ?>
+      <div class="seguidores">
+        <h2>Seguidores de <a href='perfil.php?id_usuario=<?php echo $id_usuario; ?>'><?php echo $usuario["usuario"]; ?></a>
+        </h2>
+        <?php
 
-    // FINAL - MENSAJE
-  
-    $query = "SELECT * FROM t_seguidores WHERE id_seguido = '$id_usuario'";
+        // INICIO - MENSAJE
+      
+        if (isset($_SESSION["msj"])) {
 
-    $res = mysqli_query($con, $query);
+          echo $_SESSION["msj"];
 
-    if (mysqli_num_rows($res) > 0) {
+          unset($_SESSION["msj"]);
 
-      while ($fila = mysqli_fetch_array($res)) {
-
-        $id_seguidor = $fila["id_seguidor"];
-
-        $q_seguidor = "SELECT foto_perfil, usuario, id_usuario FROM t_usuarios INNER JOIN t_seguidores ON t_usuarios.id_usuario = t_seguidores.id_seguidor WHERE id_seguidor = '$id_seguidor'";
-
-        $r_seguidor = mysqli_query($con, $q_seguidor);
-
-        $seguidor = mysqli_fetch_array($r_seguidor);
-
+        }
+        // FINAL - MENSAJE
         ?>
 
-        <ul>
+        <?php
+        $query = "SELECT * FROM t_seguidores WHERE id_seguido = '$id_usuario'";
 
-          <li>
+        $res = mysqli_query($con, $query);
 
-            <img src="<?php echo $seguidor["foto_perfil"] ?>" width="20px">
+        if (mysqli_num_rows($res) > 0) {
 
-            <a href="perfil.php?id_usuario=<?php echo $seguidor["id_usuario"]; ?>"><?php echo $seguidor["usuario"]; ?></a>
+          while ($fila = mysqli_fetch_array($res)) {
 
-            <?php
+            $id_seguidor = $fila["id_seguidor"];
 
-            if ($id_usuario == $_SESSION["id_usuario"]) {
+            $q_seguidor = "SELECT foto_perfil, usuario, id_usuario FROM t_usuarios INNER JOIN t_seguidores ON t_usuarios.id_usuario = t_seguidores.id_seguidor WHERE id_seguidor = '$id_seguidor'";
 
-              ?><a
-                href="../controlador/eliminar_seguidor.php?id_seguidor=<?php echo $seguidor["id_usuario"]; ?>">Eliminar</a>
-              <?php
+            $r_seguidor = mysqli_query($con, $q_seguidor);
 
-            }
+            $seguidor = mysqli_fetch_array($r_seguidor);
 
             ?>
 
-          </li>
+            <ul>
+              <li>
+                <img src="<?php echo $seguidor["foto_perfil"] ?>" width="20px">
 
-        </ul>
+                <a href="perfil.php?id_usuario=<?php echo $seguidor["id_usuario"]; ?>"><?php echo $seguidor["usuario"]; ?></a>
 
-        <?php
-      }
+                <?php
 
-    } else {
+                if ($id_usuario == $_SESSION["id_usuario"]) {
 
-      echo "Nadie sigue a " . $usuario["usuario"] . " :(";
+                  ?><a
+                    href="../controlador/eliminar_seguidor.php?id_seguidor=<?php echo $seguidor["id_usuario"]; ?>">Eliminar</a>
+                  <?php
 
-    }
+                }
 
-  }
+                ?>
+
+              </li>
+
+            </ul>
+
+            <?php
+          }
+
+        } else {
+
+          echo "Nadie sigue a " . $usuario["usuario"] . " :(";
+
+        }
+
+    } ?>
+    </div>
+  </div>
+</body>
+
+</html>

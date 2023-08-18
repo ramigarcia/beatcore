@@ -1,0 +1,49 @@
+.edit-perfil {
+  border: 1px solid blue;
+  padding: 20px;
+  grid-area: contenidoP;
+}
+
+.edit-perfil form {
+  border: 1px solid red;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  /* grid-template-areas:
+    "fotoPerfil selectFotoPerfil"
+    "fotoPortada selectFotoPortada"
+    "labelUsuario usuario"
+    "labelNombre nombre"
+    "labelApellido apellido"
+    "labelDesc descripcion"
+    "btnGuardar btnGuardar"; */
+  place-items: center;
+}
+
+.edit-perfil form label {
+  border: 1px solid red;
+  width: 500px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: 20% 80%;
+  grid-template-areas:
+    "span input";
+  margin: 0 0 10px;
+}
+
+/* .edit-perfil form .label-foto-perfil {
+  border: 1px solid blue;
+  width: 100%;
+} */
+
+.edit-perfil form label span {
+  border: 1px solid red;
+  grid-area: span;
+}
+
+.edit-perfil form label input {
+  border: 1px solid red;
+  grid-area: input;
+}

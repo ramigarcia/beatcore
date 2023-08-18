@@ -1,5 +1,6 @@
 /* IMPORTACION DE COMPONENTES */
 @import url('./components/navegacion.css');
+@import url('./components/sidebar.css');
 @import url('./components/cartaPublicacion.css');
 
 * {
