@@ -28,12 +28,11 @@ function traerPublicaciones($query)
 
             </div>
 
-            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
-                src="../../publico/img/iconos/compartir.png" /></a>
+            <?php publicacionRespuesta($fila["id_publicacion"]); ?>
 
             <?php guardar($fila["id_publicacion"]); ?>
 
-            <a href="#?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
+            <a href="responder.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/responder.png" /></a>
 
             <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
@@ -60,6 +59,40 @@ function traerPublicaciones($query)
   } else {
 
     echo "No hay publicaciones";
+
+  }
+
+}
+// PUBLICACION - RESPUESTA
+function publicacionRespuesta($id_publicacion){
+  // EN CASO DE QUE LA PUBLICACIÓN SEA UNA RESPUESTA, MOSTRALA
+  include("../modelo/conexion.php");
+
+  $query = "SELECT * FROM t_publicaciones WHERE id_publicacion = '$id_publicacion'";
+  
+  $res = mysqli_fetch_array(mysqli_query($con, $query));
+
+  if($res["id_respuesta"] != NULL){
+
+    $id_respuesta = $res["id_respuesta"];
+
+    $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_respuesta'";
+
+    $res = mysqli_fetch_array(mysqli_query($con,$query));
+
+    ?>
+
+      <div>
+    
+        <img src="<?= fotoP . $res["id_usuario"] . "/" . $res["foto_perfil"]; ?>" width="20px" height="20px">
+
+        <a href="#"><?= $res["usuario"]; ?></a>
+
+        <p><?= $res["texto"]; ?></p>
+
+      </div>
+
+    <?php
 
   }
 
@@ -150,7 +183,7 @@ function traerComentarios($query)
     <ul>
       <?php while ($fila = mysqli_fetch_array($res)) { ?>
         <li>
-          <img src="<?php echo $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
+          <img src="<?php echo fotoP . $fila["id_usuario"] . "/" . $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
 
           <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
