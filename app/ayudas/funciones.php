@@ -40,7 +40,7 @@ function traerPublicaciones($query)
             <a href="publicacion.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
                 src="../../publico/img/iconos/comentar.png" /></a>
 
-            <?php echo cantidadComentarios($fila["id_publicacion"]); ?>
+            <?php echo cantidadComentariosPublicacion($fila["id_publicacion"]); ?>
 
             <?php likesPublicacion($fila["id_publicacion"]); ?>
 
@@ -171,7 +171,7 @@ function guardar($id_publicacion)
 // FIN - GUARDAR PUBLICACION
 
 // INICIO - FUNCIONES COMENTARIOS
-function traerComentarios($query)
+function mostrarComentarios($query)
 {
 
   include("../modelo/conexion.php");
@@ -191,6 +191,24 @@ function traerComentarios($query)
             <?php echo $fila["texto"]; ?>
           </p>
 
+          <?php
+          
+          $datos = datosComentario($fila["id_comentario"]);
+
+          if($datos["id_respuesta"] == NULL){
+  
+            ?>
+
+              <a href="comentario.php?id_comentario=<?= $fila["id_comentario"] ?>"><img src="../../publico/img/iconos/comentar.png"></a> 
+
+            <?php 
+            
+            echo cantidadRespuestasComentario($fila["id_comentario"]);
+
+          }
+
+          ?>
+
           <?php likeComentario($fila["id_comentario"], $fila["id_publicacion"]); ?>
         </li>
       <?php } ?>
@@ -199,11 +217,24 @@ function traerComentarios($query)
   }
 }
 
-function cantidadComentarios($id_publicacion)
+function cantidadComentariosPublicacion($id_publicacion)
 {
+  // FUNCION PARA RETORNAR LA CANTIDAD DE COMENTARIOS QUE TIENE UNA PUBLICACION
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_comentarios WHERE id_publicacion = '$id_publicacion'";
+
+  $res = mysqli_query($con, $query);
+
+  return mysqli_num_rows($res);
+}
+
+function cantidadRespuestasComentario($id_comentario)
+{
+  // FUNCION PARA RETORNAR LA CANTIDAD DE RESPUESTAS QUE TIENE UN COMENTARIO
+  include("../modelo/conexion.php");
+
+  $query = "SELECT * FROM t_comentarios WHERE id_respuesta = '$id_comentario'";
 
   $res = mysqli_query($con, $query);
 
@@ -250,6 +281,18 @@ function cantidadLikesComentario($id_comentario)
   $res = mysqli_query($con, $query);
 
   return mysqli_num_rows($res);
+
+}
+
+function datosComentario($id_comentario){
+
+  include("../modelo/conexion.php");
+
+  $query = "SELECT * FROM t_comentarios INNER JOIN t_usuarios ON t_comentarios.id_usuario = t_usuarios.id_usuario WHERE id_comentario = '$id_comentario'";
+
+  $datos = mysqli_fetch_array(mysqli_query($con, $query));
+
+  return $datos;
 
 }
 // FIN - FUNCIONES COMENTARIOS

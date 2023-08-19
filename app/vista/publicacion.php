@@ -53,9 +53,9 @@
 
     <?php
 
-    $query = "SELECT * FROM t_comentarios INNER JOIN t_usuarios ON t_comentarios.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_publicacion' ORDER BY id_comentario DESC";
+    $query = "SELECT * FROM t_comentarios INNER JOIN t_usuarios ON t_comentarios.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_publicacion' AND id_respuesta  IS NULL ORDER BY id_comentario DESC";
 
-    traerComentarios($query);
+    mostrarComentarios($query);
 
   }
 
