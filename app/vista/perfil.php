@@ -9,6 +9,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/perfil.css">
   <!-- META PROPS -->
 </head>
 
@@ -19,7 +20,6 @@
     <div class="perfilDatos">
       <?php
       if (isset($_GET["id_usuario"])) {
-
         $id_usuarioP = $_GET["id_usuario"];
 
         $tu_usuario = $_SESSION["id_usuario"];
@@ -31,12 +31,12 @@
         if (mysqli_num_rows($res) == 1) {
 
           $fila = mysqli_fetch_array($res);
-
           ?>
+          <div class="contenedor-portada-perfil">
+            <img src="<?php echo $fila['foto_portada']; ?>" />
 
-          <img src="<?php echo $fila['foto_portada']; ?>" />
-
-          <img src="<?php echo $fila["foto_perfil"]; ?>" />
+            <img width="200px" class="img-perfil" src="<?php echo fotoP . $id_usuarioP . '/' . $fila["foto_perfil"]; ?>" />
+          </div>
 
           <h1>
             <?php echo $fila["usuario"]; ?>

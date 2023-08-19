@@ -43,8 +43,7 @@
       <legend>Registrar usuario</legend>
       <label for="usuario">
         <span>Usuario</span>
-        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-           required autofocus>
+        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario" required autofocus>
       </label>
 
       <label for="gmail">

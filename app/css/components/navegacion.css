@@ -22,7 +22,7 @@
 }
 
 .nav-lista {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 200px;
   display: flex;
   align-items: center;
@@ -32,15 +32,27 @@
 }
 
 .nav-lista-item {
-  border: 1px solid red;
   height: 24px;
+}
+
+.nav-lista-item.item-perfil a img {
+  border: 2px solid transparent;
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.nav-lista-item.item-perfil a img:hover {
+  border: 2px solid blue;
+  transition: .3s all ease-in-out;
 }
 
 /* MENU TRES PUNTITOS */
 
 .nav-lista .lista-menu {
   border: 1px solid red;
-  /* display: none; */
+  display: none;
   width: 200px;
   position: absolute;
   top: 55px;

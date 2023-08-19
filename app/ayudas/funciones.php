@@ -9,11 +9,14 @@ function traerPublicaciones($query)
   if (mysqli_num_rows($res) > 0) {
     ?>
     <ul>
-      <?php while ($fila = mysqli_fetch_array($res)) { ?>
+      <?php
+      while ($fila = mysqli_fetch_array($res)) {
+        ?>
         <li>
           <div class="carta-publi">
 
-            <img src="<?= $fila["foto_perfil"]; ?>" width="20px" alt="foto de perfil" />
+            <img class="img-publi-perfil" src="<?php echo fotoP . $fila['id_usuario'] . '/' . $fila["foto_perfil"]; ?>"
+              width="20px" alt="foto de perfil" />
 
             <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
