@@ -5,14 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeatCore</title>
+  <!-- CDN BOXICONS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- ESTILOS -->
   <link rel="stylesheet" href="./css/main.css">
   <!-- META PROPS -->
 </head>
 
 <body>
+  <div class="overlay"></div>
   <header>
     <nav class="navigation">
+      <div class="menu">
+        <i class='bx bx-menu'></i>
+      </div>
+      <div class="cerrar-menu">
+        <i class='bx bx-x' ></i>
+      </div>
       <div class="logo">
         <a href="index.php">BeatCore</a>
       </div>
