@@ -15,7 +15,7 @@ function traerPublicaciones($query)
         <li>
           <div class="carta-publi">
 
-            <img class="img-publi-perfil" src="<?php echo fotoP . $fila['id_usuario'] . '/' . $fila["foto_perfil"]; ?>"
+            <img class="img-publi-perfil" src="<?php echo URL_USUARIO . $fila['id_usuario'] . '/foto_perfil/' . $fila["foto_perfil"]; ?>"
               width="20px" alt="foto de perfil" />
 
             <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
@@ -84,7 +84,7 @@ function publicacionRespuesta($id_publicacion){
 
       <div>
     
-        <img src="<?= fotoP . $res["id_usuario"] . "/" . $res["foto_perfil"]; ?>" width="20px" height="20px">
+        <img src="<?= URL_USUARIO . $res["id_usuario"] . "/foto_perfil/" . $res["foto_perfil"]; ?>" width="20px" height="20px">
 
         <a href="#"><?= $res["usuario"]; ?></a>
 
@@ -183,7 +183,7 @@ function mostrarComentarios($query)
     <ul>
       <?php while ($fila = mysqli_fetch_array($res)) { ?>
         <li>
-          <img src="<?php echo fotoP . $fila["id_usuario"] . "/" . $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
+          <img src="<?php echo URL_USUARIO . $fila["id_usuario"] . "/foto_perfil/" . $fila["foto_perfil"]; ?>" width="20px" alt="Foto de perfil">
 
           <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 

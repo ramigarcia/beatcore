@@ -10,7 +10,7 @@ $id_usuario = $_SESSION["id_usuario"];
 if (empty($_SESSION["usuario"])) {
   header("location: ../../");
 }
-define("fotoP", "../../publico/img/foto_perfil/");
+define("URL_USUARIO", "../../publico/usuarios/");
 ?>
 
 <header>
@@ -48,7 +48,7 @@ define("fotoP", "../../publico/img/foto_perfil/");
       <li class="nav-lista-item item-perfil">
         <!-- LINK AL PERFIL DEL USUARIO -->
         <a href="perfil.php?id_usuario=<?php echo $id_usuario; ?>">
-          <img src="<?php echo fotoP . $id_usuario . '/' . datosUsuario($id_usuario, "foto_perfil")["foto_perfil"]; ?>"
+          <img src="<?php echo URL_USUARIO . $id_usuario . '/foto_perfil/' . datosUsuario($id_usuario, "foto_perfil")["foto_perfil"]; ?>"
             width="20px">
         </a>
         <!-- FIN - LINK AL PERFIL -->

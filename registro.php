@@ -121,12 +121,47 @@ if (isset($_POST["btn_registrar_usuario"])) {
       } else {
 
         // REGISTRAR USUARIO
-        $query = "INSERT INTO t_usuarios(usuario, gmail, fecha_nacimiento, clave, foto_portada, foto_perfil, id_rol, fecha_creacion) VALUES('$usuario', '$gmail','$fecha_nacimiento', '$clave', '$foto_portada', '$foto_perfil', '1', now())";
+        $query = "INSERT INTO t_usuarios(usuario, gmail, fecha_nacimiento, clave, foto_portada, foto_perfil, id_rol, fecha_creacion) VALUES('$usuario', '$gmail','$fecha_nacimiento', '$clave', '´por_defecto.png', '´por_defecto.png', '1', now())";
 
         $res = mysqli_query($con, $query);
 
         if ($res) {
           $_SESSION["msj"] = "Felicidades, se registró exitosamente";
+
+
+          $url = $_SERVER["DOCUMENT_ROOT"] ."/BeatCore/publico/usuarios/". mysqli_insert_id($con) . "/";
+
+          if(!file_exists($url)){
+
+            mkdir($url);
+
+            mkdir($url ."foto_perfil/");
+
+            mkdir($url ."foto_portada/");
+
+            // Asignar una foto de perfil por defecto
+            $archivo = "C://xampp/htdocs/BeatCore/publico/img/por_defecto/foto_perfil.png";
+
+            $destino = "C://xampp/htdocs/BeatCore/publico/usuarios/". mysqli_insert_id($con) ."/foto_perfil/por_defecto.png";
+
+            if(!copy($archivo, $destino)){
+
+              echo "Error al copiar $archivo";
+
+            }
+
+            // Asignar una foto de portada por defecto
+            $archivo = "C://xampp/htdocs/BeatCore/publico/img/por_defecto/foto_portada.png";
+
+            $destino = "C://xampp/htdocs/BeatCore/publico/usuarios/". mysqli_insert_id($con) ."/foto_portada/por_defecto.png";
+
+            if(!copy($archivo, $destino)){
+
+              echo "Error al copiar $archivo";
+
+            }
+
+          }
           header("Location: login.php");
         } else {
           echo "Algo salió mal";
