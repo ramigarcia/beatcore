@@ -15,8 +15,9 @@ function traerPublicaciones($query)
         <li>
           <div class="carta-publi">
 
-            <img class="img-publi-perfil" src="<?php echo URL_USUARIO . $fila['id_usuario'] . '/foto_perfil/' . $fila["foto_perfil"]; ?>"
-              width="20px" alt="foto de perfil" />
+          <div class="img-perfil">
+            <img class="img-publi-perfil" src="<?php echo URL_USUARIO . $fila['id_usuario'] . '/foto_perfil/' . $fila["foto_perfil"]; ?>"/>
+          </div>
 
             <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 

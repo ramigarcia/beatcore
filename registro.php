@@ -121,7 +121,7 @@ if (isset($_POST["btn_registrar_usuario"])) {
       } else {
 
         // REGISTRAR USUARIO
-        $query = "INSERT INTO t_usuarios(usuario, gmail, fecha_nacimiento, clave, foto_portada, foto_perfil, id_rol, fecha_creacion) VALUES('$usuario', '$gmail','$fecha_nacimiento', '$clave', '´por_defecto.png', '´por_defecto.png', '1', now())";
+        $query = "INSERT INTO t_usuarios(usuario, gmail, fecha_nacimiento, clave, foto_portada, foto_perfil, id_rol, fecha_creacion) VALUES('$usuario', '$gmail','$fecha_nacimiento', '$clave', 'por_defecto.png', 'por_defecto.png', '1', now())";
 
         $res = mysqli_query($con, $query);
 

@@ -2,10 +2,21 @@
   border: 1px solid red;
   grid-area: contenidoP;
   padding: 20px 0;
+  overflow-y: auto;
+  height: calc(100vh - 70px);
+}
+
+.publicaciones::-webkit-scrollbar {
+  width: 7px;
+}
+
+.publicaciones::-webkit-scrollbar-thumb {
+  background-color: rgb(21, 221, 235);
+  border-radius: 5px;
 }
 
 .publicaciones main {
   border: 1px solid red;
   width: 95%;
-  margin: 30px auto;
+  margin: 20px auto 0 auto;
 }

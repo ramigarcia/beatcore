@@ -1,6 +1,17 @@
 .perfilDatos {
   border: 1px solid red;
   grid-area: contenidoP;
+  overflow-y: auto;
+  height: calc(100vh - 70px);
+}
+
+.perfilDatos::-webkit-scrollbar {
+  width: 7px;
+}
+
+.perfilDatos::-webkit-scrollbar-thumb {
+  background-color: rgb(21, 221, 235);
+  border-radius: 5px;
 }
 
 .contenedor-portada-perfil {
@@ -15,6 +26,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .contenedor-portada-perfil .img-perfil {
@@ -22,6 +34,7 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
   position: absolute;
   left: 80px;
   bottom: -50px;
