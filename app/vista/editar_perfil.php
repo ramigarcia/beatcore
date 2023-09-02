@@ -35,7 +35,7 @@
       $fotos_usuario = datosUsuario($id_usuario, "foto_perfil, foto_portada", );
     
       // Crear la carpeta del usuario en caso de que no exista
-      $url = $_SERVER["DOCUMENT_ROOT"] ."/BeatCore/publico/usuarios/". $_SESSION["id_usuario"] ."/";
+      $url = $_SERVER["DOCUMENT_ROOT"] ."/publico/usuarios/". $_SESSION["id_usuario"] ."/";
       if(!file_exists($url)){
     
         mkdir($url);
@@ -82,6 +82,8 @@
     
       if($res){
         header("Location: perfil.php?id_usuario=" . $id_usuario);
+      }else{
+        echo "error";
       }
     
     }

@@ -35,7 +35,7 @@
           <div class="contenedor-portada-perfil">
             <img src="<?php echo URL_USUARIO . $id_usuarioP . '/foto_portada/' . $fila["foto_portada"]; ?>" />
 
-            <img width="200px" class="img-perfil" src="<?php echo URL_USUARIO . $id_usuarioP . '/foto_perfil/' . $fila["foto_perfil"]; ?>" />
+            <img class="img-perfil" src="<?php echo URL_USUARIO . $id_usuarioP . '/foto_perfil/' . $fila["foto_perfil"]; ?>" />
           </div>
 
           <h1>
