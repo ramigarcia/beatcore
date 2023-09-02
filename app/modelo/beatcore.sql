@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-08-2023 a las 08:19:59
+-- Tiempo de generación: 02-09-2023 a las 07:37:06
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -142,7 +142,10 @@ INSERT INTO `t_publicaciones` (`id_publicacion`, `id_respuesta`, `id_usuario`, `
 (36, NULL, 25, 'Estaría bueno un sistema para responder publicaciones :(\r\n', '', '', '', '', '', '', '2023-08-19'),
 (37, 36, 24, 'Y ACÁ LO TENÉS PAPAAAA', '', '', '', '', '', '', '2023-08-19'),
 (47, NULL, 26, 'Ahora también se pueden responder a los comentarios!! (con otros comentarios)', '', '', '', '', '', '', '2023-08-19'),
-(49, 47, 25, 'Necesito dormir :)', '', '', '', '', '', '', '2023-08-19');
+(49, 47, 25, 'Necesito dormir :)', '', '', '', '', '', '', '2023-08-19'),
+(50, NULL, 27, 'Estoy arreglando las cosas :D', '', '', '', '', '', '', '2023-09-02'),
+(51, 50, 29, 'Estoy avanzando bastante (?', '', '', '', '', '', '', '2023-09-02'),
+(52, 50, 29, 'Estoy avanzando bastante (?', '', '', '', '', '', '', '2023-09-02');
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,8 @@ INSERT INTO `t_seguidores` (`id_seguimiento`, `id_seguidor`, `id_seguido`) VALUE
 (24, 25, 24),
 (31, 25, 26),
 (29, 26, 24),
-(28, 26, 25);
+(28, 26, 25),
+(32, 27, 26);
 
 -- --------------------------------------------------------
 
@@ -215,7 +219,10 @@ CREATE TABLE `t_usuarios` (
 INSERT INTO `t_usuarios` (`id_usuario`, `usuario`, `gmail`, `telefono`, `clave`, `nombre`, `apellido`, `fecha_nacimiento`, `descripcion`, `foto_perfil`, `foto_portada`, `id_rol`, `fecha_creacion`) VALUES
 (24, 'leordio_', 'nicolaslc.main@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Nicolas Leonel', 'Corbalan', '2005-06-20', 'Lele para los amigos...', '64e0387d33023chica_anime.jpg', '../../publico/img/foto_portada/zapatillas.png', 1, '2023-08-17'),
 (25, 'chowsen', 'chowchow@gmail.com', '', '202cb962ac59075b964b07152d234b70', '', '', '2004-07-20', '', '64e03c860e621fantasmita_cool.jpg', '../../publico/img/foto_portada/descarga (2).jpeg', 1, '2023-08-17'),
-(26, 'peke', 'peke@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Ariel Axel Iván', 'Lopez Benitez', '2004-08-06', 'Pepengaa!!', '64e039a714242descarga.jpeg', '../../publico/img/foto_portada/descarga (1).jpeg', 1, '2023-08-17');
+(26, 'peke', 'peke@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Ariel Axel Iván', 'Lopez Benitez', '2004-08-06', 'Pepengaa!!', '64f2c6f124a74WhatsApp Image 2023-09-01 at 23.59.05.jpeg', '64f2c70238a5aWhatsApp Image 2023-09-01 at 23.59.27.jpeg', 1, '2023-08-17'),
+(27, 'ramii', 'rg@gmail.com', '', '7815696ecbf1c96e6894b779456d330e', '', '', '2004-05-03', '', '64f2bae1e0bb4WhatsApp Image 2023-09-01 at 23.59.27.jpeg', '64f2c22eb4d34WhatsApp Image 2023-09-01 at 23.59.27.jpeg', 1, '2023-09-02'),
+(28, 'tester1', 'tester1@gmail.com', '', '7815696ecbf1c96e6894b779456d330e', '', '', '2004-05-03', '', '´por_defecto.png', '´por_defecto.png', 1, '2023-09-02'),
+(29, 'tester2', 'tester2@gmail.com', '', '7815696ecbf1c96e6894b779456d330e', '', '', '2008-07-09', '', 'por_defecto.png', 'por_defecto.png', 1, '2023-09-02');
 
 --
 -- Índices para tablas volcadas
@@ -301,7 +308,7 @@ ALTER TABLE `t_likes`
 -- AUTO_INCREMENT de la tabla `t_publicaciones`
 --
 ALTER TABLE `t_publicaciones`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `t_roles`
@@ -313,13 +320,13 @@ ALTER TABLE `t_roles`
 -- AUTO_INCREMENT de la tabla `t_seguidores`
 --
 ALTER TABLE `t_seguidores`
-  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `t_usuarios`
 --
 ALTER TABLE `t_usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

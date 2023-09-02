@@ -27,6 +27,4 @@ OTRAS CUESTIONES:
     box-icons
 
 LEE ESTO!!!!!!!!!!!!
-Te salteaste un pequeño detalle, y es que el Like, Comentar, Responder y Guardar van abajo a la derecha y por abajo de la publicación (osea por fuera del div (por así decirlo)). Yo no entiendo de css asi que no sé cómo hacer una estructura factible para eso asi que te confío esa tarea a vos. Mañana te voy a pasar bocetos hoja única y exclusivamente para que veas cómo pretendo que se vean las publicaciones (más prolijo). Igualmente te felicito, hiciste un montón!! Bien ahí Rami, seguí así compañeroooooooo!!
-
-PD: cuando termines de leer esto si querés borralo, para que no quede.
+La base de datos es nueva importa esta que está acá para poder trabajar con la misma
