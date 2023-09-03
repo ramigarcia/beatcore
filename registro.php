@@ -128,21 +128,10 @@ if (isset($_POST["btn_registrar_usuario"])) {
         if ($res) {
           $_SESSION["msj"] = "Felicidades, se registró exitosamente";
 
-
-          $url = $_SERVER["DOCUMENT_ROOT"] ."/BeatCore/publico/usuarios/". mysqli_insert_id($con) . "/";
-
-          if(!file_exists($url)){
-
-            mkdir($url);
-
-            mkdir($url ."foto_perfil/");
-
-            mkdir($url ."foto_portada/");
-
             // Asignar una foto de perfil por defecto
             $archivo = "C://xampp/htdocs/BeatCore/publico/img/por_defecto/foto_perfil.png";
 
-            $destino = "C://xampp/htdocs/BeatCore/publico/usuarios/". mysqli_insert_id($con) ."/foto_perfil/por_defecto.png";
+            $destino = "C://xampp/htdocs/BeatCore/publico/img/foto_perfil/us". mysqli_insert_id($con) .".png";
 
             if(!copy($archivo, $destino)){
 
@@ -153,7 +142,7 @@ if (isset($_POST["btn_registrar_usuario"])) {
             // Asignar una foto de portada por defecto
             $archivo = "C://xampp/htdocs/BeatCore/publico/img/por_defecto/foto_portada.png";
 
-            $destino = "C://xampp/htdocs/BeatCore/publico/usuarios/". mysqli_insert_id($con) ."/foto_portada/por_defecto.png";
+            $destino = "C://xampp/htdocs/BeatCore/publico/img/foto_portada/us". mysqli_insert_id($con) .".png";
 
             if(!copy($archivo, $destino)){
 
@@ -161,7 +150,8 @@ if (isset($_POST["btn_registrar_usuario"])) {
 
             }
 
-          }
+            mysqli_query($con, "UPDATE t_usuarios SET foto_perfil = 'us".mysqli_insert_id($con).".png', foto_portada = 'us".mysqli_insert_id($con).".png' WHERE id_usuario = '".mysqli_insert_id($con)."'");
+
           header("Location: login.php");
         } else {
           echo "Algo salió mal";

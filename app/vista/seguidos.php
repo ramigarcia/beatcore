@@ -49,7 +49,7 @@
             ?>
             <ul>
               <li>
-                <img src="<?php echo URL_USUARIO . $seguido["id_usuario"] . "/foto_perfil/" . $seguido["foto_perfil"] ?>" width="20px">
+                <img src="<?= FOTO_PERFIL . $seguido["foto_perfil"]?>" width="20px" alt="Foto de perfil">
 
                 <a href="perfil.php?id_usuario=<?php echo $seguido["id_usuario"]; ?>"><?php echo $seguido["usuario"]; ?></a>
 

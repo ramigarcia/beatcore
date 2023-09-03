@@ -1,3 +1,29 @@
+<?php
+
+function rellenar($atributo){
+
+  include ("../modelo/conexion.php");
+
+  if(isset($_POST[$atributo])){
+
+    echo $_POST[$atributo];
+
+  }else{
+
+    $dato = mysqli_fetch_array(mysqli_query($con, "SELECT $atributo FROM t_usuarios WHERE id_usuario = '$_SESSION[id_usuario]'"))[$atributo];
+
+    if(!empty($dato)){
+
+      echo $dato;
+
+    }
+
+  }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <!-- HEAD -->
@@ -24,69 +50,7 @@
 
     include("../componentes/sidebar.php");
 
-    $id_usuario = $_SESSION["id_usuario"];
-
-    $fila = datosUsuario($id_usuario, "*");
-
-    if (isset($_POST["btn_editar"])) {
-
-      $id_usuario = $_SESSION["id_usuario"];
-    
-      $fotos_usuario = datosUsuario($id_usuario, "foto_perfil, foto_portada", );
-    
-      // Crear la carpeta del usuario en caso de que no exista
-      $url = $_SERVER["DOCUMENT_ROOT"] ."/publico/usuarios/". $_SESSION["id_usuario"] ."/";
-      if(!file_exists($url)){
-    
-        mkdir($url);
-    
-        mkdir($url ."foto_perfil/");
-    
-        mkdir($url ."foto_portada/");
-    
-      }
-    
-      if ($_FILES["foto_perfil"]["name"] == "") {
-    
-        $foto_perfil = $fotos_usuario["foto_perfil"];
-    
-      } else {
-        $foto_perfil = uniqid() . $_FILES["foto_perfil"]["name"];
-    
-        move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $url ."foto_perfil/". $foto_perfil);
-      }
-    
-      if ($_FILES["foto_portada"]["name"] == "") {
-    
-        $foto_portada = $fotos_usuario["foto_portada"];
-    
-      } else {
-    
-        $foto_portada = uniqid() . $_FILES["foto_portada"]["name"];
-    
-        move_uploaded_file($_FILES['foto_portada']['tmp_name'], $url ."foto_portada/". $foto_portada);
-    
-      }
-    
-      $usuario = $_POST["usuario"];
-    
-      $nombre = $_POST["nombre"];
-    
-      $apellido = $_POST["apellido"];
-    
-      $descr = $_POST["descr"];
-    
-      $query = "UPDATE t_usuarios SET foto_perfil = '$foto_perfil', foto_portada = '$foto_portada', usuario = '$usuario', nombre = '$nombre', apellido = '$apellido', descripcion = '$descr' WHERE id_usuario = '$id_usuario'";
-    
-      $res = mysqli_query($con, $query);
-    
-      if($res){
-        header("Location: perfil.php?id_usuario=" . $id_usuario);
-      }else{
-        echo "error";
-      }
-    
-    }
+    $usuario = datosUsuario($_SESSION["id_usuario"], "*");
 
     ?>
     <div class="edit-perfil">
@@ -105,22 +69,22 @@
 
           <label for="usuario">
             <span>Usuario</span>
-            <input type="text" name="usuario" id="usuario" value="<?= $fila["usuario"] ?>">
+            <input type="text" name="usuario" id="usuario" value="<?php rellenar("usuario")?>">
           </label>
 
           <label for="nombre">
             <span>Nombre</span>
-            <input type="text" name="nombre" id="nombre" value="<?= $fila["nombre"] ?>">
+            <input type="text" name="nombre" id="nombre" value="<?php rellenar("nombre")?>">
           </label>
 
           <label for="apellido">
             <span>Apellido</span>
-            <input type="text" name="apellido" id="apellido" value="<?= $fila["apellido"] ?>">
+            <input type="text" name="apellido" id="apellido" value="<?php rellenar("apellido")?>">
           </label>
 
           <label for="descr">
             <span>Descripción</span>
-            <textarea name="descr" id="descr"><?= $fila["descripcion"] ?></textarea>
+            <textarea name="descr" id="descr"><?php rellenar("descr")?></textarea>
           </label>
 
           <input type="submit" name="btn_editar" value="Guardar cambios">
@@ -128,6 +92,61 @@
       </main>
     </div>
   </div>
+
+  <?php
+  
+  if (isset($_POST["btn_editar"])) {
+
+    $url = $_SERVER["DOCUMENT_ROOT"] ."/BeatCore/publico/img/";
+
+    if ($_FILES["foto_perfil"]["name"] == "") {
+  
+      $foto_perfil = $usuario["foto_perfil"];
+  
+    } else {
+
+      $foto_perfil = "us". $_SESSION["id_usuario"] . pathinfo($_FILES["foto_perfil"]["name"], PATHINFO_EXTENSION);
+  
+      if(file_exists($url ."foto_perfil/". $foto_perfil)){
+        unlink($url ."foto_perfil/". $foto_perfil);
+      }
+
+      move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $url ."foto_perfil/". $foto_perfil);
+  
+    }
+  
+    if ($_FILES["foto_portada"]["name"] == "") {
+  
+      $foto_portada = $usuario["foto_portada"];
+  
+    } else {
+
+      $foto_portada = "us". $_SESSION["id_usuario"] . pathinfo($_FILES["foto_portada"]["name"], PATHINFO_EXTENSION);
+      
+      if(file_exists($url ."foto_portada/". $foto_portada)){
+        unlink($url ."foto_portada/". $foto_portada);
+      }
+
+      move_uploaded_file($_FILES['foto_portada']['tmp_name'], $url ."foto_portada/". $foto_portada);
+  
+    }
+
+    $usuario = $_POST["usuario"];
+  
+    $nombre = $_POST["nombre"];
+  
+    $apellido = $_POST["apellido"];
+  
+    $descr = $_POST["descr"];
+  
+    $query = "UPDATE t_usuarios SET foto_perfil = '$foto_perfil', foto_portada = '$foto_portada', usuario = '$usuario', nombre = '$nombre', apellido = '$apellido', descr = '$descr' WHERE id_usuario = '$_SESSION[id_usuario]'";
+
+    mysqli_query($con, $query);
+    
+    header("location: perfil.php?id_usuario=". $_SESSION["id_usuario"]);
+
+  }
+  ?>
 
 </body>
 

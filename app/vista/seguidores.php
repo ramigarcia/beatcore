@@ -70,7 +70,7 @@
 
             <ul>
               <li>
-                <img src="<?php echo URL_USUARIO . $seguidor["id_usuario"] . "/foto_perfil/" . $seguidor["foto_perfil"] ?>" width="20px">
+                <img src="<?= FOTO_PERFIL . $seguidor["foto_perfil"]?>" width="20px" alt="Foto de perfil">
 
                 <a href="perfil.php?id_usuario=<?php echo $seguidor["id_usuario"]; ?>"><?php echo $seguidor["usuario"]; ?></a>
 
