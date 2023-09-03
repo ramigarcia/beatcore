@@ -140,8 +140,6 @@ if (isset($_POST["btn_registrar_usuario"])) {
             mkdir($url ."foto_portada/");
 
             // Asignar una foto de perfil por defecto
-
-            // REVISAR SI ESTA RUTA NO AFECTA A LA IMAGEN POR DEFECTO
             $archivo = "C://xampp/htdocs/BeatCore/publico/img/por_defecto/foto_perfil.png";
 
             $destino = "C://xampp/htdocs/BeatCore/publico/usuarios/". mysqli_insert_id($con) ."/foto_perfil/por_defecto.png";
@@ -153,8 +151,6 @@ if (isset($_POST["btn_registrar_usuario"])) {
             }
 
             // Asignar una foto de portada por defecto
-
-            // REVISAR SI ESTA RUTA NO AFECTA A LA IMAGEN POR DEFECTO
             $archivo = "C://xampp/htdocs/BeatCore/publico/img/por_defecto/foto_portada.png";
 
             $destino = "C://xampp/htdocs/BeatCore/publico/usuarios/". mysqli_insert_id($con) ."/foto_portada/por_defecto.png";

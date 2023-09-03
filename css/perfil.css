@@ -1,0 +1,28 @@
+.perfilDatos {
+  border: 1px solid red;
+  grid-area: contenidoP;
+}
+
+.contenedor-portada-perfil {
+  border: 1px solid blue;
+  height: 250px;
+  position: relative;
+  margin-bottom: 60px;
+  /* overflow: hidden; */
+}
+
+.contenedor-portada-perfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contenedor-portada-perfil .img-perfil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  left: 80px;
+  bottom: -50px;
+}
