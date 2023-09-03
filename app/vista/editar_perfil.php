@@ -105,7 +105,7 @@ function rellenar($atributo){
   
     } else {
 
-      $foto_perfil = "us". $_SESSION["id_usuario"] . pathinfo($_FILES["foto_perfil"]["name"], PATHINFO_EXTENSION);
+      $foto_perfil = "us". $_SESSION["id_usuario"] .".". pathinfo($_FILES["foto_perfil"]["name"], PATHINFO_EXTENSION);
   
       if(file_exists($url ."foto_perfil/". $foto_perfil)){
         unlink($url ."foto_perfil/". $foto_perfil);
@@ -121,7 +121,7 @@ function rellenar($atributo){
   
     } else {
 
-      $foto_portada = "us". $_SESSION["id_usuario"] . pathinfo($_FILES["foto_portada"]["name"], PATHINFO_EXTENSION);
+      $foto_portada = "us". $_SESSION["id_usuario"] .".". pathinfo($_FILES["foto_portada"]["name"], PATHINFO_EXTENSION);
       
       if(file_exists($url ."foto_portada/". $foto_portada)){
         unlink($url ."foto_portada/". $foto_portada);
