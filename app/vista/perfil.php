@@ -33,9 +33,9 @@
           $fila = mysqli_fetch_array($res);
           ?>
           <div class="contenedor-portada-perfil">
-            <img src="<?php echo URL_USUARIO . $id_usuarioP . '/foto_portada/' . $fila["foto_portada"]; ?>" />
+            <img src="<?= FOTO_PORTADA . $fila["foto_portada"]?>" />
 
-            <img width="200px" class="img-perfil" src="<?php echo URL_USUARIO . $id_usuarioP . '/foto_perfil/' . $fila["foto_perfil"]; ?>" />
+            <img width="200px" class="img-perfil" src="<?= FOTO_PERFIL . $fila["foto_perfil"]?>" />
           </div>
 
           <h1>
@@ -47,7 +47,7 @@
           </h2>
 
           <p>
-            <?= $fila["descripcion"]; ?>
+            <?= $fila["descr"]; ?>
           </p>
 
           <?php
