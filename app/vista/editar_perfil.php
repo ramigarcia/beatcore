@@ -82,9 +82,9 @@ function rellenar($atributo){
             <input type="text" name="apellido" id="apellido" value="<?php rellenar("apellido")?>">
           </label>
 
-          <label for="descr">
+          <label for="descripcion">
             <span>Descripción</span>
-            <textarea name="descr" id="descr"><?php rellenar("descr")?></textarea>
+            <textarea name="descripcion" id="descripcion"><?php rellenar("descripcion")?></textarea>
           </label>
 
           <input type="submit" name="btn_editar" value="Guardar cambios">
@@ -97,7 +97,7 @@ function rellenar($atributo){
   
   if (isset($_POST["btn_editar"])) {
 
-    $url = $_SERVER["DOCUMENT_ROOT"] ."/BeatCore/publico/img/";
+    $url = $_SERVER["DOCUMENT_ROOT"] ."/beatcore/publico/img/";
 
     if ($_FILES["foto_perfil"]["name"] == "") {
   
@@ -137,9 +137,9 @@ function rellenar($atributo){
   
     $apellido = $_POST["apellido"];
   
-    $descr = $_POST["descr"];
+    $descr = $_POST["descripcion"];
   
-    $query = "UPDATE t_usuarios SET foto_perfil = '$foto_perfil', foto_portada = '$foto_portada', usuario = '$usuario', nombre = '$nombre', apellido = '$apellido', descr = '$descr' WHERE id_usuario = '$_SESSION[id_usuario]'";
+    $query = "UPDATE t_usuarios SET foto_perfil = '$foto_perfil', foto_portada = '$foto_portada', usuario = '$usuario', nombre = '$nombre', apellido = '$apellido', descripcion = '$descr' WHERE id_usuario = '$_SESSION[id_usuario]'";
 
     mysqli_query($con, $query);
     

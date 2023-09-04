@@ -47,7 +47,7 @@
           </h2>
 
           <p>
-            <?= $fila["descr"]; ?>
+            <?= $fila["descripcion"]; ?>
           </p>
 
           <?php
