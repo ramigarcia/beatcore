@@ -18,13 +18,9 @@
 
             $query = "INSERT INTO t_comentarios(id_usuario, id_publicacion, id_respuesta, texto, fecha_comentario) VALUES('$id_usuario','$id_publicacion', '$id_respuesta',  '$texto', now())";
 
-            $url = "../vista/comentario.php?id_comentario=". $id_respuesta;
-
         }else{
 
             $query = "INSERT INTO t_comentarios(id_usuario, id_publicacion,  texto, fecha_comentario) VALUES('$id_usuario','$id_publicacion',  '$texto', now())";
-
-            $url = "../vista/publicacion.php?id_publicacion=". $id_publicacion;
 
         }
         
@@ -32,10 +28,14 @@
 
         if($res){
 
-            header("Location: $url");
+            header('Location:' . getenv('HTTP_REFERER'));
 
         }
 
-    }
+    }else{
+
+        header('Location:' . getenv('HTTP_REFERER'));
+        
+      }
 
 ?>

@@ -16,16 +16,20 @@ if (isset($_POST["btn_publicar"]) OR isset($_GET["id_publicacion"])) {
 
     $query = "INSERT INTO t_publicaciones(id_usuario, id_respuesta, texto) VALUES ('$id_usuario', '$id_respuesta', '$texto')";
 
+    echo"<script>window.history.go(-2)</script>";
+
   }else{
   
     $query = "INSERT INTO t_publicaciones(id_usuario, texto) VALUES ('$id_usuario', '$texto')";
 
+    header("Location: ". getenv('HTTP_REFERER'));
+
   }
 
   $res = mysqli_query($con, $query);
+}else{
 
-  if ($res) {
-    header("Location: ../vista/inicio.php");
-  }
+  header('Location:' . getenv('HTTP_REFERER'));
+  
 }
 ?>

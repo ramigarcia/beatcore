@@ -22,8 +22,6 @@
 
             mysqli_query($con, $query);
 
-            header("Location: ../vista/inicio.php");
-
         }else{
 
             // LO GUARDA
@@ -32,14 +30,14 @@
 
             $res = mysqli_query($con, $query);
 
-            if($res){
-
-                header("Location: ../vista/inicio.php");
-
-            }
-
         }
 
-    }
+        header('Location:' . getenv('HTTP_REFERER'));
+
+    }else{
+
+        header('Location:' . getenv('HTTP_REFERER'));
+        
+      }
 
 ?>

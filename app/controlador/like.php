@@ -22,8 +22,6 @@ include("../modelo/conexion.php");
 
             $res = mysqli_query($con, $query);
 
-            header("Location: ../vista/inicio.php");
-
         }else{
 
             // DAR LIKE
@@ -32,13 +30,9 @@ include("../modelo/conexion.php");
 
             $res = mysqli_query($con, $query);
 
-            if($res){
-
-                header("Location: ../vista/inicio.php");
-
-            }
-
         }
+
+        header('Location:' . getenv('HTTP_REFERER'));
 
     }else if(isset($_GET["id_comentario"])){
 
@@ -60,8 +54,6 @@ include("../modelo/conexion.php");
 
             $res = mysqli_query($con, $query);
 
-            header("Location: ../vista/publicacion.php?id_publicacion=". $id_publicacion_c);
-
         }else{
 
             // DAR LIKE
@@ -70,14 +62,14 @@ include("../modelo/conexion.php");
 
             $res = mysqli_query($con, $query);
 
-            if($res){
-
-                header("Location: ../vista/publicacion.php?id_publicacion=". $id_publicacion_c);
-
-            }
-
         }
 
-    }
+        header('Location:' . getenv('HTTP_REFERER'));
+
+    }else{
+
+        header('Location:' . getenv('HTTP_REFERER'));
+        
+      }
 
 ?>

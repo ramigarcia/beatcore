@@ -53,6 +53,18 @@
 
                 <a href="perfil.php?id_usuario=<?php echo $seguido["id_usuario"]; ?>"><?php echo $seguido["usuario"]; ?></a>
 
+                <?php
+
+                if ($id_usuario == $_SESSION["id_usuario"]) {
+
+                  ?><a
+                    href="../controlador/deseguir_usuario.php?id_usuario=<?php echo $seguido["id_usuario"]; ?>">Dejar de seguir</a>
+                  <?php
+
+                }
+
+                ?>
+
               </li>
             </ul>
             <?php

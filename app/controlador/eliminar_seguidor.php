@@ -16,8 +16,12 @@
 
         $_SESSION["msj"] = "Se eliminó al seguidor con éxito";
 
-        header("Location: ../vista/seguidores.php?id_usuario=". $id_usuario);
+        header('Location:' . getenv('HTTP_REFERER'));
 
-    }
+    }else{
+
+        header('Location:' . getenv('HTTP_REFERER'));
+        
+      }
 
 ?>

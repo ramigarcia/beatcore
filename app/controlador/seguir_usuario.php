@@ -16,10 +16,14 @@ if (isset($_GET["id_usuario"])) {
 
   if ($res) {
 
-    header("Location: ../vista/perfil.php?id_usuario=" . $id_seguido);
+    header('Location:' . getenv('HTTP_REFERER'));
 
   }
 
+}else{
+
+  header('Location:' . getenv('HTTP_REFERER'));
+  
 }
 
 ?>
