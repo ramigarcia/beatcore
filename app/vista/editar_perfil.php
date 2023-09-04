@@ -87,7 +87,7 @@ function rellenar($atributo){
             <textarea name="descripcion" id="descripcion"><?php rellenar("descripcion")?></textarea>
           </label>
 
-          <input type="submit" name="btn_editar" value="Guardar cambios">
+          <input type="submit" name="btn_editar" value="Guardar cambios" onsubmit="this.disabled=true;">
         </form>
       </main>
     </div>

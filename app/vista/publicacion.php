@@ -47,7 +47,7 @@
 
       </label>
 
-      <input type="submit" name="btn_comentar" value="Comentar">
+      <input type="submit" name="btn_comentar" value="Comentar" onsubmit="this.disabled=true;">
 
     </form>
 
