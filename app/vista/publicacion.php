@@ -57,6 +57,10 @@
 
     mostrarComentarios($query);
 
+  }else{
+
+    header("Location: inicio.php");
+
   }
 
   ?>

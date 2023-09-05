@@ -45,6 +45,16 @@ function traerPublicaciones($query)
 
             <?php likesPublicacion($fila["id_publicacion"]); ?>
 
+            <?php
+            
+            if($fila["id_usuario"] == $_SESSION["id_usuario"]){
+
+              ?><a href="../controlador/eliminar_publicacion.php?id_publicacion=<?=$fila["id_publicacion"]?>">Eliminar</a><?php
+
+            }
+
+            ?>
+
           </div>
 
         </li>
