@@ -57,4 +57,5 @@ header {
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-areas: "sideBar contenidoP";
+  color: #fafafa;
 }
