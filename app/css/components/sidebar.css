@@ -12,5 +12,24 @@
 
 .sidebar-lista {
   /* border: 1px solid red; */
-  height: 100%;
+  margin: auto;
+  height: 90%;
+  padding: 10px;
+
+}
+
+.sidebar-lista-item {
+  margin: 20% 0;
+  position: relative;
+}
+
+.sidebar-lista-item a {
+  color: #1a1a1a;
+  letter-spacing: 1px;
+  font-weight: 500;
+  position: relative;
+}
+
+.sidebar-lista-item a:hover {
+  border-bottom: 2px solid #1a1a1a;
 }
