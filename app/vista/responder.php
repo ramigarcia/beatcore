@@ -38,7 +38,7 @@
 
         </label>
 
-        <input type="submit" name="btn_responder" onclick="this.disabled=true;" value="Responder">
+        <input type="submit" name="btn_responder" onsubmit="this.disabled=true;" value="Responder">
 
     </form>
 
