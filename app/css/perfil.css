@@ -16,7 +16,7 @@
 
 .contenedor-portada-perfil {
   border: 1px solid blue;
-  height: 250px;
+  height: 55%;
   position: relative;
   margin-bottom: 60px;
   /* overflow: hidden; */
@@ -30,8 +30,8 @@
 }
 
 .contenedor-portada-perfil .img-perfil {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;

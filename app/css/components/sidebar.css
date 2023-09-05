@@ -1,5 +1,5 @@
 .sidebar {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   border-radius: 0px 10px 10px 0px;
   display: flex;
   flex-direction: column;
@@ -7,9 +7,10 @@
   height: calc(100vh - 50px);
   grid-area: sideBar;
   padding: 10px;
+  background-color: rgb(233, 189, 12);
 }
 
 .sidebar-lista {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 100%;
 }
