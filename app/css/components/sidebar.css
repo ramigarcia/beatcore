@@ -1,35 +1,48 @@
 .sidebar {
-  /* border: 1px solid blue; */
   border-radius: 0px 10px 10px 0px;
-  display: flex;
-  flex-direction: column;
   max-width: 250px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 65px);
   grid-area: sideBar;
-  padding: 10px;
   background-color: rgb(233, 189, 12);
 }
 
 .sidebar-lista {
-  /* border: 1px solid red; */
+  width: 90%;
+  height: 100%;
+  padding-left: 10px;
   margin: auto;
-  height: 90%;
-  padding: 10px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .sidebar-lista-item {
-  margin: 20% 0;
   position: relative;
 }
 
 .sidebar-lista-item a {
+  text-decoration: none;
+  font-size: 1.2rem;
   color: #1a1a1a;
   letter-spacing: 1px;
   font-weight: 500;
   position: relative;
 }
 
-.sidebar-lista-item a:hover {
-  border-bottom: 2px solid #1a1a1a;
+.sidebar-lista-item a::after {
+  content: '';
+  width: 0;
+  height: 3px;
+  background-color: cadetblue;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all .5s;
+  will-change: width;
+}
+
+.sidebar-lista-item a:hover::after {
+  /* border-bottom: 2px solid #1a1a1a; */
+  width: 100%;
+  left: 0;
 }

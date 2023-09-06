@@ -11,7 +11,8 @@
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@200;300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@200;300;500&display=swap"
+    rel="stylesheet">
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/index.css">
@@ -40,9 +41,9 @@
           <div class="div-contenido-modal">
 
             <form id="form_nueva_publicacion" action="../controlador/publicar.php" method="post">
-              <legend>Nueva publicación</legend>
+              <!-- <legend>Nueva publicación</legend> -->
               <label for="texto" class="label">
-                <span>Texto</span>
+                <!-- <span>Texto</span> -->
                 <textarea name="texto" id="texto" maxlength="300" placeholder="Escribe aquí lo que quieres expresar"
                   required autofocus></textarea>
               </label>
