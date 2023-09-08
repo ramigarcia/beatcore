@@ -26,7 +26,7 @@ body {
   font-family: var(--nunito);
   font-size: 18px;
   display: grid;
-  grid-template-columns: 100%;
+  /* grid-template-columns: 100%; */
   /* grid-template-rows: 50px 100%; */
   grid-template-areas:
     "nav"
@@ -57,4 +57,9 @@ header {
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-areas: "sideBar contenidoP";
+<<<<<<< HEAD
+  color: #fafafa;
 }
+=======
+}
+>>>>>>> rami

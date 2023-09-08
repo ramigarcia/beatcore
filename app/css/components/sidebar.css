@@ -1,16 +1,78 @@
 .sidebar {
-  /* border: 1px solid blue; */
   border-radius: 0px 10px 10px 0px;
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
-  max-width: 250px;
-  height: calc(100vh - 50px);
+  max-width: 220px;
+  height: calc(100vh - 65px);
   grid-area: sideBar;
-  padding: 10px;
+  padding: 0 5px 0;
+  background-color: rgb(212, 170, 0);
+=======
+  max-width: 250px;
+  height: calc(100vh - 65px);
+  grid-area: sideBar;
   background-color: rgb(233, 189, 12);
+>>>>>>> rami
 }
 
 .sidebar-lista {
-  /* border: 1px solid red; */
+  width: 90%;
   height: 100%;
+  padding-left: 10px;
+  margin: auto;
+<<<<<<< HEAD
+  height: 90%;
+  padding: 10px;
 }
+
+.sidebar-lista-item {
+  margin: 22% 0;
+=======
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sidebar-lista-item {
+>>>>>>> rami
+  position: relative;
+}
+
+.sidebar-lista-item a {
+<<<<<<< HEAD
+  color: #141414;
+  letter-spacing: 0.5px;
+=======
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+>>>>>>> rami
+  font-weight: 500;
+  position: relative;
+}
+
+<<<<<<< HEAD
+.sidebar-lista-item a:hover {
+  border-bottom: 2px solid #222222;
+}
+=======
+.sidebar-lista-item a::after {
+  content: '';
+  width: 0;
+  height: 3px;
+  background-color: cadetblue;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all .5s;
+  will-change: width;
+}
+
+.sidebar-lista-item a:hover::after {
+  /* border-bottom: 2px solid #1a1a1a; */
+  width: 100%;
+  left: 0;
+}
+>>>>>>> rami

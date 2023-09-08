@@ -10,7 +10,7 @@
       <a href="#">Videollamadas</a>
     </li>
     <li class="sidebar-lista-item">
-      <a href="guardado.php">Publicaciones guardadas</a>
+      <a href="guardado.php">Guardado</a>
     </li>
     <li class="sidebar-lista-item">
       <a href="editar_perfil.php">Editar perfil</a>

@@ -33,13 +33,11 @@ function traerPublicaciones($query)
 
             <?php guardar($fila["id_publicacion"]); ?>
 
-            <a href="responder.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
-                src="../../publico/img/iconos/responder.png" /></a>
+            <a href="responder.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><i class='bx bx-share bx-rotate-180' ></i></a>
 
             <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
 
-            <a href="publicacion.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><img
-                src="../../publico/img/iconos/comentar.png" /></a>
+            <a href="publicacion.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><i class='bx bx-message-square-dots'></i></a>
 
             <?php echo cantidadComentariosPublicacion($fila["id_publicacion"]); ?>
 
@@ -122,14 +120,12 @@ function likesPublicacion($id_publicacion)
 
   if ($dio_like) {
 
-    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img
-        src="../../publico/img/iconos/like_solido.png" /></a>
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bxs-like' ></i></a>
     <?php
 
   } else {
 
-    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><img
-        src="../../publico/img/iconos/like_regular.png" /></a>
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bx-like'></i></a>
     <?php
 
   }
@@ -166,14 +162,12 @@ function guardar($id_publicacion)
 
   if ($lo_guardo) {
 
-    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img
-        src="../../publico/img/iconos/guardar_solido.png" /></a>
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bxs-save' ></i></a>
     <?php
 
   } else {
 
-    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><img
-        src="../../publico/img/iconos/guardar_regular.png" /></a>
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bx-save'></i></a>
     <?php
 
   }

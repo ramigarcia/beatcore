@@ -1,9 +1,11 @@
 .publicaciones {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   grid-area: contenidoP;
   padding: 20px 0;
   overflow-y: auto;
+  width: 100%;
   height: calc(100vh - 70px);
+  margin-left: 15px;
 }
 
 .publicaciones::-webkit-scrollbar {
@@ -16,7 +18,7 @@
 }
 
 .publicaciones main {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 95%;
   margin: 20px auto 0 auto;
 }
