@@ -96,8 +96,8 @@ if (isset($_POST["btn_registrar_usuario"])) {
   $usuario = $_POST["usuario"];
   $gmail = $_POST["gmail"];
   $fecha_nacimiento = $_POST["fecha_nacimiento"];
-  $clave = md5($_POST["clave"]);
-  $rep_clave = md5($_POST["rep_clave"]);
+  $clave = $_POST["clave"];
+  $rep_clave = $_POST["rep_clave"];
   $foto_perfil = "../../publico/img/foto_perfil/por_defecto.png";
   $foto_portada = "../../publico/img/foto_portada/por_defecto.png";
 
@@ -121,6 +121,7 @@ if (isset($_POST["btn_registrar_usuario"])) {
       } else {
 
         // REGISTRAR USUARIO
+        $clave = password_hash($calve, PASSWORD_DEFAULT);
         $query = "INSERT INTO t_usuarios(usuario, gmail, fecha_nacimiento, clave, foto_portada, foto_perfil, id_rol, fecha_creacion) VALUES('$usuario', '$gmail','$fecha_nacimiento', '$clave', 'por_defecto.png', 'por_defecto.png', '1', now())";
 
         $res = mysqli_query($con, $query);

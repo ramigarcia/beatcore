@@ -10,13 +10,19 @@
 
         $id_usuario = $_SESSION["id_usuario"];
 
-        $query = "DELETE FROM t_seguidores WHERE id_seguidor = '$id_seguidor' AND id_seguido = '$id_usuario'";
+        $stmt = mysqli_prepare($con, "DELETE FROM t_seguidores WHERE id_seguidor = ? AND id_seguido = ?");
 
-        $res = mysqli_query($con, $query);
+        mysqli_stmt_bind_param($stmt, "ii", $id_seguidor, $id_usuario);
 
-        $_SESSION["msj"] = "Se eliminó al seguidor con éxito";
+        if(mysqli_stmt_execute($stmt)){
 
-        header('Location:' . getenv('HTTP_REFERER'));
+            $_SESSION["msj"] = "Se eliminó al seguidor con éxito";
+    
+            mysqli_stmt_close($stmt);
+
+            header('Location:' . getenv('HTTP_REFERER'));
+
+        }
 
     }else{
 

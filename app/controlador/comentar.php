@@ -10,23 +10,27 @@
 
         $id_publicacion = $_GET["id_publicacion"];
 
-        $texto = $_POST["texto"];
+        $texto = htmlentities($_POST["texto"]);
 
         if(isset($_GET["id_respuesta"])){
 
             $id_respuesta = $_GET["id_respuesta"];
 
-            $query = "INSERT INTO t_comentarios(id_usuario, id_publicacion, id_respuesta, texto, fecha_comentario) VALUES('$id_usuario','$id_publicacion', '$id_respuesta',  '$texto', now())";
+            $stmt = mysqli_prepare($con, "INSERT INTO t_comentarios(id_usuario, id_publicacion, id_respuesta, texto, fecha_comentario) VALUES(?,?,?,?, now())");
+
+            mysqli_stmt_bind_param($stmt, "iiis", $id_usuario, $id_publicacion, $id_respuesta, $texto);
 
         }else{
 
-            $query = "INSERT INTO t_comentarios(id_usuario, id_publicacion,  texto, fecha_comentario) VALUES('$id_usuario','$id_publicacion',  '$texto', now())";
+            $stmt = mysqli_prepare($con, "INSERT INTO t_comentarios(id_usuario, id_publicacion, texto, fecha_comentario) VALUES(?,?,?, now())");
+
+            mysqli_stmt_bind_param($stmt, "iis", $id_usuario, $id_publicacion, $texto);
 
         }
         
-        $res = mysqli_query($con, $query);
+        if(mysqli_stmt_execute($stmt)){
 
-        if($res){
+            mysqli_stmt_close($stmt);
 
             header('Location:' . getenv('HTTP_REFERER'));
 

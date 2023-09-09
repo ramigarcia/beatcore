@@ -88,17 +88,13 @@ if (isset($_POST["btn_login"])) {
 
   $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario'";
 
-  $res = mysqli_query($con, $query);
-
-  if (mysqli_num_rows($res) == 0) {
+  $res = mysqli_fetch_array(mysqli_query($con, $query));
+  
+  if (empty($res)) {
     echo "Usuario incorrecto";
   } else {
 
-    $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario' AND clave = '$clave'";
-
-    $res = mysqli_query($con, $query);
-
-    if (mysqli_num_rows($res) == 0) {
+    if (!password_verify($_POST["clave"], $res["clave"])) {
       echo "Contraseña incorrecta";
     } else {
 

@@ -14,25 +14,46 @@ include("../modelo/conexion.php");
 
         $dio_like = mysqli_num_rows(mysqli_query($con, $query));
 
-        if($dio_like){
+        $stmt = mysqli_prepare($con, "SELECT COUNT(*) dio_like FROM t_likes WHERE id_publicacion = ? AND id_usuario = ?");
+
+        mysqli_stmt_bind_param($stmt, "ii", $id_publicacion, $id_usuario);
+
+        mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_bind_result($stmt, $dio_like);
+
+        mysqli_stmt_fetch($stmt);
+
+        if($dio_like == true){
 
             // SACAR EL LIKE
 
-            $query = "DELETE FROM t_likes WHERE id_usuario = '$id_usuario' AND id_publicacion = '$id_publicacion'";
+            mysqli_stmt_close($stmt);
 
-            $res = mysqli_query($con, $query);
+            $stmt = mysqli_prepare($con, "DELETE FROM t_likes WHERE id_usuario = ? AND id_publicacion = ?");
+
+            mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_publicacion);
 
         }else{
 
             // DAR LIKE
 
-            $query = "INSERT INTO t_likes(id_usuario, id_publicacion, fecha_like) VALUES('$id_usuario', '$id_publicacion', now())";
+            mysqli_stmt_close($stmt);
 
-            $res = mysqli_query($con, $query);
+            $stmt = mysqli_prepare($con, "INSERT INTO t_likes(id_usuario, id_publicacion, fecha_like) VALUES(?,?, now())");
+
+            mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_publicacion);
 
         }
 
-        header('Location:' . getenv('HTTP_REFERER'));
+        if(mysqli_stmt_execute($stmt)){
+
+            mysqli_stmt_close($stmt);
+
+            header('Location:' . getenv('HTTP_REFERER'));
+
+        }
+
 
     }else if(isset($_GET["id_comentario"])){
 
@@ -46,25 +67,45 @@ include("../modelo/conexion.php");
 
         $dio_like = mysqli_num_rows(mysqli_query($con, $query));
 
-        if($dio_like){
+        $stmt = mysqli_prepare($con, "SELECT COUNT(*) dio_like FROM t_likes WHERE id_comentario = ? AND id_usuario = ?");
+
+        mysqli_stmt_bind_param($stmt, "ii", $id_comentario, $id_usuario);
+
+        mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_bind_result($stmt, $dio_like);
+
+        mysqli_stmt_fetch($stmt);
+
+        if($dio_like == true){
 
             // SACAR EL LIKE
 
-            $query = "DELETE FROM t_likes WHERE id_usuario = '$id_usuario' AND id_comentario = '$id_comentario'";
+            mysqli_stmt_close($stmt);
 
-            $res = mysqli_query($con, $query);
+            $stmt = mysqli_prepare($con, "DELETE FROM t_likes WHERE id_usuario = ? AND id_comentario = ?");
+
+            mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_comentario);
 
         }else{
 
             // DAR LIKE
 
-            $query = "INSERT INTO t_likes(id_usuario, id_comentario, fecha_like) VALUES('$id_usuario', '$id_comentario', now())";
+            mysqli_stmt_close($stmt);
 
-            $res = mysqli_query($con, $query);
+            $stmt = mysqli_prepare($con, "INSERT INTO t_likes(id_usuario, id_comentario, fecha_like) VALUES(?,?, now())");
+
+            mysqli_stmt_bind_param($stmt, "ii", $id_usuario, $id_comentario);
 
         }
 
-        header('Location:' . getenv('HTTP_REFERER'));
+        if(mysqli_stmt_execute($stmt)){
+
+            mysqli_stmt_close($stmt);
+
+            header('Location:' . getenv('HTTP_REFERER'));
+
+        }
 
     }else{
 

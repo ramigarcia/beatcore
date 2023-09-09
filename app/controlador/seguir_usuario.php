@@ -6,15 +6,15 @@ if (isset($_GET["id_usuario"])) {
 
   include("../modelo/conexion.php");
 
+  $stmt = mysqli_prepare($con, "INSERT INTO t_seguidores(id_seguido, id_seguidor) VALUES(?,?)");
+
+  mysqli_stmt_bind_param($stmt, "ii", $id_seguido, $id_seguidor);
+
   $id_seguido = $_GET["id_usuario"];
 
   $id_seguidor = $_SESSION["id_usuario"];
 
-  $query = "INSERT INTO t_seguidores(id_seguido, id_seguidor) VALUES('$id_seguido ', '$id_seguidor')";
-
-  $res = mysqli_query($con, $query);
-
-  if ($res) {
+  if (mysqli_stmt_execute($stmt)) {
 
     header('Location:' . getenv('HTTP_REFERER'));
 

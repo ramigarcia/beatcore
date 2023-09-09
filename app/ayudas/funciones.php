@@ -24,7 +24,7 @@ function traerPublicaciones($query)
             <div class="publicacion-contenido">
 
               <p>
-                <?php echo $fila["texto"]; ?>
+                <?php echo $fila["texto"] ; ?>
               </p>
 
             </div>
