@@ -12,13 +12,11 @@
 // }
 
 
-if (isset($_GET["id_usuario"]) && isset($_GET["nombre"])) {
+if (isset($_GET["id_usuario"])) {
   $phpVar1 = $_GET["id_usuario"];
-  $phpVar2 = $_GET["nombre"];
 
   echo json_encode([
     "id" => $phpVar1,
-    "nombre" => $phpVar2
   ]);
 } else {
   echo json_encode([
