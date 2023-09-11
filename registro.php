@@ -121,13 +121,12 @@ if (isset($_POST["btn_registrar_usuario"])) {
       } else {
 
         // REGISTRAR USUARIO
-        $clave = password_hash($calve, PASSWORD_DEFAULT);
         $query = "INSERT INTO t_usuarios(usuario, gmail, fecha_nacimiento, clave, foto_portada, foto_perfil, id_rol, fecha_creacion) VALUES('$usuario', '$gmail','$fecha_nacimiento', '$clave', 'por_defecto.png', 'por_defecto.png', '1', now())";
 
         $res = mysqli_query($con, $query);
 
         if ($res) {
-          $_SESSION["msj"] = "Felicidades, se registró exitosamente";
+          $_SESSION[""] = "Felicidades, se registró exitosamente";
 
             // Asignar una foto de perfil por defecto
             $archivo = $_SERVER["DOCUMENT_ROOT"] ."/beatcore/publico/img/por_defecto/foto_perfil.png";
