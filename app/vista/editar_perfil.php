@@ -1,5 +1,6 @@
 <?php
 
+
 function rellenar($atributo){
 
   include ("../modelo/conexion.php");
@@ -57,6 +58,47 @@ function rellenar($atributo){
       <main>
         <form action="editar_perfil.php" method="POST" enctype="multipart/form-data">
 
+          <?php
+          // VALIDACIÓN
+          if(isset($_POST["btn_editar"])){
+            $valido = true;
+            if(strlen($_POST["usuario"]) < 3){
+              echo "<p>Introduzca un nombre de usuario más largo</p>";
+              $valido = false;
+            }else if($_POST["usuario"] != $_SESSION["usuario"]){
+              $stmt = mysqli_prepare($con, "SELECT usuario FROM t_usuarios WHERE usuario = ?");
+              mysqli_stmt_bind_param($stmt, "s", $_POST["usuario"]);
+              mysqli_stmt_execute($stmt);
+              if(mysqli_stmt_fetch($stmt) != NULL){
+                echo "<p>Ese nombre de usuario ya está en uso, escoja otro</p>";
+                $valido = false;
+              }
+            }
+
+            // EXTENSIONES DE LOS ARCHIVOS
+            $msj_extension = false;
+            $extensiones_validas = ["png", "jpeg", "jpg"];
+
+            if(!empty($_FILES["foto_perfil"]["name"])){
+              $extension = pathinfo($_FILES["foto_perfil"]["name"], PATHINFO_EXTENSION);
+              if(!in_array($extension, $extensiones_validas)){
+                $msj_extension = true;
+                $valido = false;
+              }
+            }
+
+            if(!empty($_FILES["foto_portada"]["name"])){
+              $extension = pathinfo($_FILES["foto_portada"]["name"], PATHINFO_EXTENSION);
+              if(!in_array($extension, $extensiones_validas)){
+                $msj_extension = true;
+                $valido = false;
+              }
+            }
+            if($msj_extension) echo "Sólo se admiten imágenes .png y .jpeg";
+
+          }
+          ?>
+
           <label for="foto_perfil" class="label-foto-perfil">
             <span>Foto de perfil</span>
             <input type="file" name="foto_perfil" id="foto_perfil">
@@ -90,64 +132,61 @@ function rellenar($atributo){
           <input type="submit" name="btn_editar" value="Guardar cambios" onsubmit="this.disabled=true;">
         </form>
       </main>
+    
     </div>
   </div>
 
-  <?php
   
-  if (isset($_POST["btn_editar"])) {
-
-    $url = $_SERVER["DOCUMENT_ROOT"] ."/beatcore/publico/img/";
-
-    if ($_FILES["foto_perfil"]["name"] == "") {
-  
-      $foto_perfil = $usuario["foto_perfil"];
-  
-    } else {
-
-      $foto_perfil = "us". $_SESSION["id_usuario"] .".". pathinfo($_FILES["foto_perfil"]["name"], PATHINFO_EXTENSION);
-  
-      if(file_exists($url ."foto_perfil/". $foto_perfil)){
-        unlink($url ."foto_perfil/". $foto_perfil);
-      }
-
-      move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $url ."foto_perfil/". $foto_perfil);
-  
-    }
-  
-    if ($_FILES["foto_portada"]["name"] == "") {
-  
-      $foto_portada = $usuario["foto_portada"];
-  
-    } else {
-
-      $foto_portada = "us". $_SESSION["id_usuario"] .".". pathinfo($_FILES["foto_portada"]["name"], PATHINFO_EXTENSION);
-      
-      if(file_exists($url ."foto_portada/". $foto_portada)){
-        unlink($url ."foto_portada/". $foto_portada);
-      }
-
-      move_uploaded_file($_FILES['foto_portada']['tmp_name'], $url ."foto_portada/". $foto_portada);
-  
-    }
-
-    $usuario = $_POST["usuario"];
-  
-    $nombre = $_POST["nombre"];
-  
-    $apellido = $_POST["apellido"];
-  
-    $descr = $_POST["descripcion"];
-  
-    $query = "UPDATE t_usuarios SET foto_perfil = '$foto_perfil', foto_portada = '$foto_portada', usuario = '$usuario', nombre = '$nombre', apellido = '$apellido', descripcion = '$descr' WHERE id_usuario = '$_SESSION[id_usuario]'";
-
-    mysqli_query($con, $query);
-    
-    header("location: perfil.php?id_usuario=". $_SESSION["id_usuario"]);
-
-  }
-  ?>
-
 </body>
 
 </html>
+<?php
+    if (isset($_POST["btn_editar"]) AND isset($valido) AND $valido == true) {
+      $url = $_SERVER["DOCUMENT_ROOT"] ."/beatcore/publico/img/";
+    
+      if ($_FILES["foto_perfil"]["name"] == "") {
+    
+        $foto_perfil = $usuario["foto_perfil"];
+    
+      } else {
+    
+        $foto_perfil = "us". $_SESSION["id_usuario"] .".". pathinfo($_FILES["foto_perfil"]["name"], PATHINFO_EXTENSION);
+    
+        if(file_exists($url ."foto_perfil/". $foto_perfil)){
+          unlink($url ."foto_perfil/". $foto_perfil);
+        }
+    
+        move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $url ."foto_perfil/". $foto_perfil);
+    
+      }
+    
+      if ($_FILES["foto_portada"]["name"] == "") {
+    
+        $foto_portada = $usuario["foto_portada"];
+    
+      } else {
+    
+        $foto_portada = "us". $_SESSION["id_usuario"] .".". pathinfo($_FILES["foto_portada"]["name"], PATHINFO_EXTENSION);
+        
+        if(file_exists($url ."foto_portada/". $foto_portada)){
+          unlink($url ."foto_portada/". $foto_portada);
+        }
+    
+        move_uploaded_file($_FILES['foto_portada']['tmp_name'], $url ."foto_portada/". $foto_portada);
+    
+      }
+    
+      $usuario = $_POST["usuario"];
+    
+      $nombre = $_POST["nombre"];
+    
+      $apellido = $_POST["apellido"];
+    
+      $descr = $_POST["descripcion"];
+    
+      $query = "UPDATE t_usuarios SET foto_perfil = '$foto_perfil', foto_portada = '$foto_portada', usuario = '$usuario', nombre = '$nombre', apellido = '$apellido', descripcion = '$descr' WHERE id_usuario = '$_SESSION[id_usuario]'";
+    
+      mysqli_query($con, $query);
+      header("Location: perfil.php?id_usuario=". $_SESSION["id_usuario"]);
+      }
+    ?>

@@ -63,7 +63,7 @@ session_start();
       <label for="usuario">
         <span>Nombre de usuario</span>
         <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-          required autofocus>
+         autofocus>
       </label>
       <label for="clave">
         <span>Contraseña</span>
@@ -81,7 +81,7 @@ if (isset($_SESSION["usuario"])) {
   header("location: app/vista/inicio.php");
 
 }
-if (isset($_POST["btn_login"])) {
+if (isset($_POST["btn_login"]) AND $_SESSION["aceptado"] != false) {
 
   $stmt = mysqli_prepare($con, "SELECT id_usuario, usuario, clave, id_rol FROM t_usuarios WHERE usuario = ?");
 

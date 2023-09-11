@@ -23,8 +23,9 @@
         $id_usuarioP = $_GET["id_usuario"];
 
         $tu_usuario = $_SESSION["id_usuario"];
-
-        $query = "SELECT * FROM t_usuarios WHERE id_usuario = $id_usuarioP ";
+        echo "Usuario ". $id_usuarioP;
+        $query = "SELECT * FROM t_usuarios 
+        WHERE id_usuario = $id_usuarioP ";
 
         $res = mysqli_query($con, $query);
 
