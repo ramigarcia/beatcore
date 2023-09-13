@@ -81,7 +81,7 @@ if (isset($_SESSION["usuario"])) {
   header("location: app/vista/inicio.php");
 
 }
-if (isset($_POST["btn_login"]) AND $_SESSION["aceptado"] != false) {
+if (isset($_POST["btn_login"])) {
 
   $stmt = mysqli_prepare($con, "SELECT id_usuario, usuario, clave, id_rol FROM t_usuarios WHERE usuario = ?");
 
