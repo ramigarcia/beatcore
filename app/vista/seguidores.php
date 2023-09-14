@@ -7,6 +7,11 @@
   <title>BeatCore</title>
   <!-- CDN - BOXICONS -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@200;300;500&display=swap"
+    rel="stylesheet">
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
   <style>
@@ -70,7 +75,7 @@
 
             <ul>
               <li>
-                <img src="<?= FOTO_PERFIL . $seguidor["foto_perfil"]?>" width="20px" alt="Foto de perfil">
+                <img src="<?= FOTO_PERFIL . $seguidor["foto_perfil"] ?>" width="20px" alt="Foto de perfil">
 
                 <a href="perfil.php?id_usuario=<?php echo $seguidor["id_usuario"]; ?>"><?php echo $seguidor["usuario"]; ?></a>
 
