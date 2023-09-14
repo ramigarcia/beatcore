@@ -1,20 +1,22 @@
 /* CARTA DE PUBLICACION */
 .carta-publi {
-  border: 1px solid red;
   margin: 0 auto 20px auto;
+  background-color: #9b9b9b;
   /* max-width: 800px; */
-  width: 65%;
+  width: 50%;
   min-height: 170px;
   border-radius: 15px;
   overflow: hidden;
-  padding: 15px;
+  padding: 5px 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
 .img-perfil {
   border-radius: 50%;
+  margin-right: 15px;
   width: 40px;
   height: 40px;
   overflow: hidden;
@@ -26,4 +28,27 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.usuario,
+.publicacion-contenido,
+.publicacion-actions {
+  width: 90%;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  padding: 10px 0 0;
+}
+
+.publicacion-contenido {
+  color: #1a1a1a;
+}
+
+
+.publicacion-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
