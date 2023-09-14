@@ -62,8 +62,7 @@ session_start();
       <!-- FIN DEL MENSAJE -->
       <label for="usuario">
         <span>Nombre de usuario</span>
-        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-          required autofocus>
+        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario" autofocus>
       </label>
       <label for="clave">
         <span>Contraseña</span>
@@ -82,31 +81,32 @@ if (isset($_SESSION["usuario"])) {
 
 }
 if (isset($_POST["btn_login"])) {
-  $usuario = $_POST["usuario"];
 
-  $clave = md5($_POST["clave"]);
+  $stmt = mysqli_prepare($con, "SELECT id_usuario, usuario, clave, id_rol FROM t_usuarios WHERE usuario = ?");
 
-  $query = "SELECT * FROM t_usuarios WHERE usuario = '$usuario'";
+  mysqli_stmt_bind_param($stmt, "s", $_POST["usuario"]);
 
-  $res = mysqli_fetch_array(mysqli_query($con, $query));
-  
-  if (empty($res)) {
+  mysqli_stmt_execute($stmt);
+
+  mysqli_stmt_bind_result($stmt, $id_usuario, $usuario, $clave, $id_rol);
+
+  if (mysqli_stmt_fetch($stmt) == NULL) {
     echo "Usuario incorrecto";
   } else {
 
-    if (!password_verify($_POST["clave"], $res["clave"])) {
-      echo "Contraseña incorrecta";
+    if ($_POST["clave"] != $clave) {
+      echo "Contraseña incorrecta<br>" . $clave . "<br>" . $_POST["clave"];
     } else {
 
-      while ($fila = mysqli_fetch_array($res)) {
+      $_SESSION["usuario"] = $usuario;
 
-        $_SESSION["usuario"] = $fila["usuario"];
+      $_SESSION["id_usuario"] = $id_usuario;
 
-        $_SESSION["id_usuario"] = $fila["id_usuario"];
+      $_SESSION["id_rol"] = $id_rol;
 
-        header("location: app/vista/inicio.php");
+      header("location: app/vista/inicio.php");
 
-      }
+
     }
   }
 }
