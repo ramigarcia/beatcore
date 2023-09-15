@@ -18,6 +18,12 @@
     <li class="sidebar-lista-item">
       <a href="../controlador/cerrar_sesion.php">Cerrar sesión</a>
     </li>
+    <!-- Botón para limpiar la base de datos -->
+    <?php if($_SESSION["id_rol"] == 2){ ?>
+    <li class="sidebar-lista-item">
+      <a href="../controlador/admin/limpiar_db.php">Limpiar base de datos</a>
+    </li>
+    <?php } ?>
     <!-- <button id="btn-nueva-publi" class="btn-nueva-publi">Nuva publicación</button> -->
   </ul>
   <!-- INICIO MODAL - NUEVA PUBLICACIÓN -->

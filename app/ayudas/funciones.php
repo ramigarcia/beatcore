@@ -58,11 +58,10 @@ function traerPublicaciones($query)
 
               <div class="eliminar">
                 <?php
-                if ($fila["id_usuario"] == $_SESSION["id_usuario"]) {
+            
+                if($fila["id_usuario"] == $_SESSION["id_usuario"] OR $_SESSION["id_rol"] == 2){
 
-                  ?><a
-                    href="../controlador/eliminar_publicacion.php?id_publicacion=<?= $fila["id_publicacion"] ?>">Eliminar</a>
-                  <?php
+                  ?><a href="../controlador/eliminar_publicacion.php?id_publicacion=<?=$fila["id_publicacion"]?>">Eliminar</a><?php
 
                 }
 
