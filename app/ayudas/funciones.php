@@ -87,40 +87,26 @@ function publicacionRespuesta($id_publicacion)
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_publicaciones WHERE id_publicacion = '$id_publicacion'";
-
   $res = mysqli_fetch_array(mysqli_query($con, $query));
 
   if ($res["id_respuesta"] != NULL) {
-
     $id_respuesta = $res["id_respuesta"];
-
     $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_respuesta'";
-
     $res = mysqli_fetch_array(mysqli_query($con, $query));
-
     ?>
-
     <div>
-
       <img src="<?= FOTO_PERFIL . $res["foto_perfil"] ?>" width="20px" height="20px">
-
       <a href="perfil.php?id_usuario=<?= $res["id_usuario"] ?>"><?= $res["usuario"]; ?></a>
-
       <p>
         <?= $res["texto"]; ?>
       </p>
-
     </div>
-
     <?php
-
   }
-
 }
 // INICIO - FUNCIONES DE LIKE
 function likesPublicacion($id_publicacion)
 {
-
   include("../modelo/conexion.php");
 
   $id_usuario = $_SESSION["id_usuario"];
@@ -130,32 +116,22 @@ function likesPublicacion($id_publicacion)
   $dio_like = mysqli_num_rows(mysqli_query($con, $query));
 
   if ($dio_like) {
-
     ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bxs-like'></i></a>
     <?php
-
   } else {
-
     ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bx-like'></i></a>
     <?php
-
   }
-
   echo cantidadLikesPublicacion($id_publicacion);
-
 }
 
 function cantidadLikesPublicacion($id_publicacion)
 {
-
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_likes WHERE id_publicacion = '$id_publicacion'";
-
   $res = mysqli_query($con, $query);
-
   return mysqli_num_rows($res);
-
 }
 // FIN - FUNCIONES DE LIKE
 
