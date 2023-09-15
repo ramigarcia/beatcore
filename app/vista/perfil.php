@@ -7,6 +7,11 @@
   <title>BeatCore</title>
   <!-- CDN - BOXICONS -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@200;300;500&display=swap"
+    rel="stylesheet">
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/perfil.css">
@@ -34,9 +39,9 @@
           $fila = mysqli_fetch_array($res);
           ?>
           <div class="contenedor-portada-perfil">
-            <img src="<?= FOTO_PORTADA . $fila["foto_portada"]?>" />
+            <img src="<?= FOTO_PORTADA . $fila["foto_portada"] ?>" />
 
-            <img width="200px" class="img-perfil" src="<?= FOTO_PERFIL . $fila["foto_perfil"]?>" />
+            <img width="200px" class="img-perfil" src="<?= FOTO_PERFIL . $fila["foto_perfil"] ?>" />
           </div>
 
           <h1>

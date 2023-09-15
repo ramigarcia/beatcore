@@ -8,6 +8,11 @@
   <title>BeatCore</title>
   <!-- CDN - BOXICONS -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@200;300;500&display=swap"
+    rel="stylesheet">
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
   <!-- META PROPS -->
@@ -21,7 +26,7 @@
     header("location: ../../");
   }
 
-    // include("../componentes/sidebar.php");
+  // include("../componentes/sidebar.php");
   
   if (isset($_GET["id_comentario"])) {
 
@@ -49,7 +54,9 @@
 
     <h3>Responder comentario</h3>
 
-    <form action="../controlador/comentar.php?id_publicacion=<?= $comentario_p["id_publicacion"] ?>&id_respuesta=<?= $comentario_p["id_comentario"] ?>" method="POST">
+    <form
+      action="../controlador/comentar.php?id_publicacion=<?= $comentario_p["id_publicacion"] ?>&id_respuesta=<?= $comentario_p["id_comentario"] ?>"
+      method="POST">
 
       <label for="texto">
 

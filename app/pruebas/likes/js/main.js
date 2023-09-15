@@ -42,9 +42,9 @@ function seleccionarBotonesLike() {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
 					// Actualizamos la "pagina" según la respuesta
 					if (data.success) {
+						console.log(data);
 						publicacion.setAttribute("data-liked", data.liked);
 						const conteoLikes = publicacion.querySelector(".conteo-likes");
 						conteoLikes.textContent = data.likes;

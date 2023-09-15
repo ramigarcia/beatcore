@@ -62,8 +62,7 @@ session_start();
       <!-- FIN DEL MENSAJE -->
       <label for="usuario">
         <span>Nombre de usuario</span>
-        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario"
-         autofocus>
+        <input type="text" value="<?php mostrarSiExiste("usuario"); ?>" name="usuario" id="usuario" autofocus>
       </label>
       <label for="clave">
         <span>Contraseña</span>
@@ -90,13 +89,13 @@ if (isset($_POST["btn_login"])) {
   mysqli_stmt_execute($stmt);
 
   mysqli_stmt_bind_result($stmt, $id_usuario, $usuario, $clave, $id_rol);
-  
+
   if (mysqli_stmt_fetch($stmt) == NULL) {
     echo "Usuario incorrecto";
   } else {
 
     if ($_POST["clave"] != $clave) {
-      echo "Contraseña incorrecta<br>". $clave . "<br>". $_POST["clave"];
+      echo "Contraseña incorrecta<br>" . $clave . "<br>" . $_POST["clave"];
     } else {
 
       $_SESSION["usuario"] = $usuario;
@@ -107,7 +106,7 @@ if (isset($_POST["btn_login"])) {
 
       header("location: app/vista/inicio.php");
 
-    
+
     }
   }
 }

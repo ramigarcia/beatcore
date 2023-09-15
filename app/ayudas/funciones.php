@@ -15,101 +15,98 @@ function traerPublicaciones($query)
         <li>
           <div class="carta-publi">
 
-          <div class="img-perfil">
-            <img class="img-publi-perfil" src="<?= FOTO_PERFIL . $fila["foto_perfil"]?>" alt="Foto de perfil"/>
-          </div>
+            <div class="usuario">
+              <div class="img-perfil">
+                <img class="img-publi-perfil" src="<?= FOTO_PERFIL . $fila["foto_perfil"] ?>" alt="Foto de perfil" />
+              </div>
 
-            <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+              <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
+            </div>
 
             <div class="publicacion-contenido">
 
               <p>
-                <?php echo $fila["texto"] ; ?>
+                <?php echo $fila["texto"]; ?>
               </p>
 
             </div>
+            <div class="publicacion-actions">
+              <div class="respuesta">
+                <?php publicacionRespuesta($fila["id_publicacion"]); ?>
+              </div>
 
-            <?php publicacionRespuesta($fila["id_publicacion"]); ?>
+              <div class="guardar">
+                <?php guardar($fila["id_publicacion"]); ?>
+              </div>
 
-            <?php guardar($fila["id_publicacion"]); ?>
+              <div class="responder">
+                <a href="responder.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><i
+                    class='bx bx-share bx-rotate-180'></i></a>
+                <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
+              </div>
 
-            <a href="responder.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><i class='bx bx-share bx-rotate-180' ></i></a>
+              <div class="comentarios">
+                <a href="publicacion.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><i
+                    class='bx bx-message-square-dots'></i></a>
 
-            <?php echo cantidadRespuestas($fila["id_publicacion"]); ?>
+                <?php echo cantidadComentariosPublicacion($fila["id_publicacion"]); ?>
+              </div>
 
-            <a href="publicacion.php?id_publicacion=<?php echo $fila["id_publicacion"]; ?>"><i class='bx bx-message-square-dots'></i></a>
+              <div class="like">
+                <?php likesPublicacion($fila["id_publicacion"]); ?>
+              </div>
 
-            <?php echo cantidadComentariosPublicacion($fila["id_publicacion"]); ?>
+              <div class="eliminar">
+                <?php
+                if ($fila["id_usuario"] == $_SESSION["id_usuario"]) {
 
-            <?php likesPublicacion($fila["id_publicacion"]); ?>
+                  ?><a
+                    href="../controlador/eliminar_publicacion.php?id_publicacion=<?= $fila["id_publicacion"] ?>">Eliminar</a>
+                  <?php
 
-            <?php
-            
-            if($fila["id_usuario"] == $_SESSION["id_usuario"]){
+                }
 
-              ?><a href="../controlador/eliminar_publicacion.php?id_publicacion=<?=$fila["id_publicacion"]?>">Eliminar</a><?php
-
-            }
-
-            ?>
-
+                ?>
+              </div>
+            </div>
           </div>
-
         </li>
-
         <?php
-
       }
-
       ?>
     </ul>
     <?php
-
   } else {
-
     echo "No hay publicaciones";
-
   }
-
 }
 // PUBLICACION - RESPUESTA
-function publicacionRespuesta($id_publicacion){
+function publicacionRespuesta($id_publicacion)
+{
   // EN CASO DE QUE LA PUBLICACIÓN SEA UNA RESPUESTA, MOSTRALA
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_publicaciones WHERE id_publicacion = '$id_publicacion'";
-  
   $res = mysqli_fetch_array(mysqli_query($con, $query));
 
-  if($res["id_respuesta"] != NULL){
-
+  if ($res["id_respuesta"] != NULL) {
     $id_respuesta = $res["id_respuesta"];
-
     $query = "SELECT * FROM t_publicaciones INNER JOIN t_usuarios ON t_publicaciones.id_usuario = t_usuarios.id_usuario WHERE id_publicacion = '$id_respuesta'";
-
-    $res = mysqli_fetch_array(mysqli_query($con,$query));
-
+    $res = mysqli_fetch_array(mysqli_query($con, $query));
     ?>
-
-      <div>
-    
-        <img src="<?= FOTO_PERFIL . $res["foto_perfil"]?>" width="20px" height="20px">
-
-        <a href="perfil.php?id_usuario=<?=$res["id_usuario"]?>"><?= $res["usuario"]; ?></a>
-
-        <p><?= $res["texto"]; ?></p>
-
-      </div>
-
+    <div>
+      <img src="<?= FOTO_PERFIL . $res["foto_perfil"] ?>" width="20px" height="20px">
+      <a href="perfil.php?id_usuario=<?= $res["id_usuario"] ?>"><?= $res["usuario"]; ?></a>
+      <p>
+        <?= $res["texto"]; ?>
+      </p>
+    </div>
     <?php
-
   }
-
 }
 // INICIO - FUNCIONES DE LIKE
 function likesPublicacion($id_publicacion)
 {
-
   include("../modelo/conexion.php");
 
   $id_usuario = $_SESSION["id_usuario"];
@@ -119,32 +116,22 @@ function likesPublicacion($id_publicacion)
   $dio_like = mysqli_num_rows(mysqli_query($con, $query));
 
   if ($dio_like) {
-
-    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bxs-like' ></i></a>
+    ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bxs-like'></i></a>
     <?php
-
   } else {
-
     ?><a href="../controlador/like.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bx-like'></i></a>
     <?php
-
   }
-
   echo cantidadLikesPublicacion($id_publicacion);
-
 }
 
 function cantidadLikesPublicacion($id_publicacion)
 {
-
   include("../modelo/conexion.php");
 
   $query = "SELECT * FROM t_likes WHERE id_publicacion = '$id_publicacion'";
-
   $res = mysqli_query($con, $query);
-
   return mysqli_num_rows($res);
-
 }
 // FIN - FUNCIONES DE LIKE
 
@@ -162,12 +149,14 @@ function guardar($id_publicacion)
 
   if ($lo_guardo) {
 
-    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bxs-save' ></i></a>
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><i
+        class='bx bxs-save'></i></a>
     <?php
 
   } else {
 
-    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><i class='bx bx-save'></i></a>
+    ?><a href="../controlador/guardar_publicacion.php?id_publicacion=<?php echo $id_publicacion ?>"><i
+        class='bx bx-save'></i></a>
     <?php
 
   }
@@ -188,7 +177,7 @@ function mostrarComentarios($query)
     <ul>
       <?php while ($fila = mysqli_fetch_array($res)) { ?>
         <li>
-          <img src="<?= FOTO_PERFIL . $fila["foto_perfil"]?>" width="20px" alt="Foto de perfil">
+          <img src="<?= FOTO_PERFIL . $fila["foto_perfil"] ?>" width="20px" alt="Foto de perfil">
 
           <a href="perfil.php?id_usuario=<?php echo $fila["id_usuario"]; ?>"><?php echo $fila["usuario"]; ?></a>
 
@@ -197,17 +186,18 @@ function mostrarComentarios($query)
           </p>
 
           <?php
-          
+
           $datos = datosComentario($fila["id_comentario"]);
 
-          if($datos["id_respuesta"] == NULL){
-  
+          if ($datos["id_respuesta"] == NULL) {
+
             ?>
 
-              <a href="comentario.php?id_comentario=<?= $fila["id_comentario"] ?>"><img src="../../publico/img/iconos/comentar.png"></a> 
+            <a href="comentario.php?id_comentario=<?= $fila["id_comentario"] ?>"><img
+                src="../../publico/img/iconos/comentar.png"></a>
 
-            <?php 
-            
+            <?php
+
             echo cantidadRespuestasComentario($fila["id_comentario"]);
 
           }
@@ -289,7 +279,8 @@ function cantidadLikesComentario($id_comentario)
 
 }
 
-function datosComentario($id_comentario){
+function datosComentario($id_comentario)
+{
 
   include("../modelo/conexion.php");
 
