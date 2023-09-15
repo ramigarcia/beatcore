@@ -8,6 +8,11 @@
   <title>BeatCore</title>
   <!-- CDN - BOXICONS -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Nunito:wght@200;300;500&display=swap"
+    rel="stylesheet">
   <!-- ESTILOS -->
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/index.css">
@@ -24,21 +29,21 @@
     header("location: ../../");
   }
 
-  if(isset($_GET["id_publicacion"])){
+  if (isset($_GET["id_publicacion"])) {
 
     ?>
-    
+
     <form action="../controlador/publicar.php?id_publicacion=<?= $_GET["id_publicacion"]; ?>" method="POST">
 
-        <label for="texto">
+      <label for="texto">
 
-            <span>Texto</span>
+        <span>Texto</span>
 
-            <input type="text" name="texto" id="texto" required autofocus>
+        <input type="text" name="texto" id="texto" required autofocus>
 
-        </label>
+      </label>
 
-        <input type="submit" name="btn_responder" onsubmit="this.disabled=true;" value="Responder">
+      <input type="submit" name="btn_responder" onsubmit="this.disabled=true;" value="Responder">
 
     </form>
 

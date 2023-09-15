@@ -1,21 +1,14 @@
 <?php
-header('Content-Type: application/json');
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $data = json_decode(file_get_contents("php://input"));
-  $idPublicacion = $data->id;
-  $idUsuario = 27;
-  $liked = $data->liked;
+function conteoLikes($id_p)
+{
+  include("../../../modelo/conexion.php");
 
-  $nuevoConteoLikes = actualizarLikes($idPublicacion, $liked, $idUsuario);
+  $query = "SELECT * FROM t_likes WHERE id_publicacion = '$id_p'";
 
-  if ($nuevoConteoLikes !== false) {
-    // Devuelve la respuesta en formato JSON
-    echo json_encode(['success' => true, 'liked' => $liked, 'likes' => $nuevoConteoLikes]);
-  } else {
-    echo json_encode(['success' => false]);
-  }
+  $res = mysqli_query($con, $query);
+
+  return mysqli_num_rows($res);
 }
-
 function actualizarLikes($idPublicacion, $liked, $idUsuario)
 {
   include("../../../modelo/conexion.php");
@@ -41,14 +34,19 @@ function actualizarLikes($idPublicacion, $liked, $idUsuario)
     return $likesConteo; // Reemplaza con el conteo real
   }
 }
+header('Content-Type: application/json');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $data = json_decode(file_get_contents("php://input"));
+  $idPublicacion = $data->id;
+  $idUsuario = 27;
+  $liked = $data->liked;
 
-function conteoLikes($id_p)
-{
-  include("../../../modelo/conexion.php");
+  $nuevoConteoLikes = actualizarLikes($idPublicacion, $liked, $idUsuario);
 
-  $query = "SELECT * FROM t_likes WHERE id_publicacion = '$id_p'";
-
-  $res = mysqli_query($con, $query);
-
-  return mysqli_num_rows($res);
+  if ($nuevoConteoLikes !== false) {
+    // Devuelve la respuesta en formato JSON
+    echo json_encode(['success' => true, 'liked' => $liked, 'likes' => $nuevoConteoLikes]);
+  } else {
+    echo json_encode(['success' => false]);
+  }
 }
