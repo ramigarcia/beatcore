@@ -96,7 +96,7 @@ if (isset($_POST["btn_login"])) {
   } else {
 
     if ($_POST["clave"] != $clave) {
-      echo "Contraseña incorrecta<br>". $clave . "<br>". $_POST["clave"];
+      echo "Contraseña incorrecta";
     } else {
 
       $_SESSION["usuario"] = $usuario;
