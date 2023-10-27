@@ -47,13 +47,8 @@
                 <textarea name="texto" id="texto" maxlength="300" placeholder="Escribe aquí lo que quieres expresar"
                   required autofocus></textarea>
               </label>
-              <input type="submit" name="btn_publicar" id="btn_publicar" onsubmit="this.disabled=true;" hidden>
+              <input type="submit" value="Publicar" name="btn_publicar" id="btn_publicar" onsubmit="this.disabled=true;">
             </form>
-
-            <div class="div-btn-modal">
-              <label for="btn-modal" class="btn-cancelar">Cancelar</label>
-              <label for="btn_publicar" class="btn-modal">Publicar</label>
-            </div>
           </div>
           <label for="btn-modal" class="cerrar-modal-fondo"></label>
         </div>
